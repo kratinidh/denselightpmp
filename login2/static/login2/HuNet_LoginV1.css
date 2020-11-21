@@ -1,0 +1,73 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    background: url("/static/login2/collage-bg-dimV1.jpg") no-repeat fixed;
+    background-size: 100%;
+}
+
+.container {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Hind', sans-serif !important;
+}
+
+input, input::-webkit-input-placeholder  {
+    font-size: 14px;
+}
+
+.card {
+    border: none;
+    border-radius: 20px;
+}
+
+.login-right {
+    padding: 2em;
+    background: linear-gradient(0deg,#5d7dbe,#2952A4);	
+    border-radius: 20px;
+} 
+
+.login-left {
+    height: 100%;
+    width: 60%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+
+}
+
+.input-group-text {
+    background: white;
+    border-right: none;
+}
+
+a {
+    color: #F8A400;
+}
+
+a:hover {
+    color: #e49800;
+}
+
+.btn {
+    background-color: #F8A400 !important;
+    border: #F8A400 1px solid !important;
+}
+
+.btn:hover {
+    background-color: #e09600 !important;
+    border: #cc8800 1px solid !important;
+}
+
+.btn:focus {
+    outline: none !important;
+    box-shadow: none !important;  
+}
