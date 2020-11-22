@@ -26,7 +26,7 @@ SECRET_KEY = config('SECRET_KEY')
 #DEBUG = False
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['localhost', '188.166.235.171', 'www.hunetsystem.com', 'hunetsystem.com']
+ALLOWED_HOSTS = ['localhost', '188.166.235.171', 'www.hunetsystem.com', 'hunetsystem.com', '127.0.0.1']
 
 
 # Application definition
@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
     'widget_tweaks',
     'materialize',
     'phonenumber_field',
@@ -94,8 +94,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'denselight1',
-        'USER': 'benny6789',
-        'PASSWORD': 'benny567',
+        'USER': 'postgres',
+        'PASSWORD': 'aditya_7275',
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -175,4 +175,4 @@ EMAIL_USE_SSL = False
 
 MEDIA_URL = '/images/'
 
-MEDIA_ROOT =  os.path.join(BASE_DIR, 'static/images') 
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'static/images')

@@ -17,7 +17,7 @@ from django.utils.crypto import get_random_string
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import auth, Group, User
-from django.contrib.auth import authenticate, login, logout 
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.decorators import permission_required
@@ -29,12 +29,12 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.edit import CreateView,  UpdateView
 from django.views.generic import DetailView, DeleteView
 
-def PROFILE_CREATION_EMAIL(name, username, email, typeOfEmployee): 
-    email_string = "Dear " + name + ", \n\nYour Performance Management System account has been created. Please see the login details below to access the system: \n\nUsername:" + username + "\nEmail: " + email + "\nPassword: DenselightPassword1234" + "\nAccess: " + typeOfEmployee + "\n\nPlease do not hesitate to contact the HR Department if you have any questions. \nThank you." 
+def PROFILE_CREATION_EMAIL(name, username, email, typeOfEmployee):
+    email_string = "Dear " + name + ", \n\nYour Performance Management System account has been created. Please see the login details below to access the system: \n\nUsername:" + username + "\nEmail: " + email + "\nPassword: DenselightPassword1234" + "\nAccess: " + typeOfEmployee + "\n\nPlease do not hesitate to contact the HR Department if you have any questions. \nThank you."
     return email_string
 
-def PROFILE_UPDATE_EMAIL(user_profile): 
-    email_string = "Dear HR personnels, \n\n" + user_profile.name + " has made a profile change in the system. \nPlease login to the system to review the changes. \n\nThank you." 
+def PROFILE_UPDATE_EMAIL(user_profile):
+    email_string = "Dear HR personnels, \n\n" + user_profile.name + " has made a profile change in the system. \nPlease login to the system to review the changes. \n\nThank you."
     return email_string
 
 @unauthenticated_user
@@ -51,7 +51,7 @@ def registerPage(request):
             username = form.cleaned_data.get('username')
 
             #When creating a user, immediately push them to employee group
-            group = Group.objects.get(name='Employee') 
+            group = Group.objects.get(name='Employee')
             #Create variable that contain group name 'employee'
             user.groups.add(group) #Push user's form into employee group
             Profile.objects.create(
@@ -60,7 +60,7 @@ def registerPage(request):
             #If request successful, print 'Account created for'
             messages.success(request,'Account created for '+ username)
             return redirect('login')
-    
+
     context = {
         'form': form
     }
@@ -72,7 +72,7 @@ def loginPage(request):
         username = request.POST.get('username')
         email= request.POST.get('email')
         password= request.POST.get('password')
-    
+
         user = authenticate(request,username=username, password=password)
         #if user exists
         if user is not None:
@@ -84,7 +84,7 @@ def loginPage(request):
         #if user does not exist
         else:
             messages.info(request,'Username OR Password is incorrect')
-            
+
     context={}
     return render(request, 'login2/login.html', context)
 
@@ -105,7 +105,7 @@ def password_change(request):
             messages.error(request, _('Please correct the error below.'))
     else:
         form = PasswordChangeForm(request.user)
-    return render(request, "login2/password_change_form.html", 
+    return render(request, "login2/password_change_form.html",
              {'form': form})
 @login_required
 def password_change_done(request,
@@ -127,7 +127,7 @@ def user_dashboard(request):
 
     #!Filter to get all Mid Year Review OA of user:
     rubric_overall_appraisal_database2 = Overall_Appraisal.objects.filter(user_appraisal_list__employee=request.user.profile, status='Stage 1B').count
-    
+
     #!Filter to get all End Year OA of user:
     rubric_overall_appraisal_database3 = Overall_Appraisal.objects.filter(Q(status='Stage 2') | Q(status='Stage 3') | Q(status='Stage 4'), user_appraisal_list__employee=request.user.profile,).count
 
@@ -149,11 +149,11 @@ def user_dashboard(request):
 #Records
     #!Filtering to get all UAL with completed OA of user
     records_user_appraisal_database = User_Appraisal_List.objects.filter(overall_appraisal__status__contains='Completed', employee = request.user.profile)
-    
+
     context ={
         #Get all Goals Setting OA of user:
         "rubic1":rubric_overall_appraisal_database1,
-        #Get all Mid Year OA of user: 
+        #Get all Mid Year OA of user:
         "rubic2":rubric_overall_appraisal_database2,
         #Get all End Year OA of user:
         "rubic3":rubric_overall_appraisal_database3,
@@ -165,7 +165,7 @@ def user_dashboard(request):
 
         #!Get all UAL with same managers that are undergoing appraisal stage, excluding personal UALs
         "user_appraisal_list_database": user_appraisal_list_database,
-        
+
         #Get all peerAppraisals with viewers = user
         "peer_appraisal_database": peer_appraisal_database,
 #Reports
@@ -183,7 +183,7 @@ def manager_dashboard(request):
 
     #!Filter to get all Mid Year Review OA of user:
     rubric_overall_appraisal_database2 = Overall_Appraisal.objects.filter(user_appraisal_list__employee=request.user.profile, status='Stage 1B').count
-    
+
     #!Filter to get all End Year OA of user:
     rubric_overall_appraisal_database3 = Overall_Appraisal.objects.filter(Q(status='Stage 2') | Q(status='Stage 3') | Q(status='Stage 4'), user_appraisal_list__employee=request.user.profile,).count
 
@@ -191,17 +191,17 @@ def manager_dashboard(request):
     #!Filtering to get all uncompleted UAL of users
     user_appraisal_database = User_Appraisal_List.objects.filter(employee = request.user.profile).exclude( overall_appraisal__status__contains='Completed')
 
-    #!Filtering to get profile of user's manager 
+    #!Filtering to get profile of user's manager
     user_manager_database = Profile.objects.get(user = request.user).first_Reporting_Manager
 
 
 #Peer appraisal:
     #!Filtering to get all UAL with same managers that are undergoing appraisal stage, excluding personal UALs
     user_appraisal_list_database = User_Appraisal_List.objects.filter(manager = request.user.profile.first_Reporting_Manager, overall_appraisal__status__contains='Stage 2').exclude(employee=request.user.profile)
- 
+
     #!Filtering to get all peerAppraisals with viewers = user
     peer_appraisal_database = peerAppraisal.objects.filter(viewer = request.user.profile).order_by('-completion')
-    
+
 #Department:
     #!Filtering to get all profile where manager = user (Subordinates)
     subordinates_database = Profile.objects.filter(first_Reporting_Manager=request.user.profile)
@@ -227,17 +227,17 @@ def manager_dashboard(request):
     #Filtering to get all subordinate uncompleted UAL
     subordinate_appraisal_system_database = User_Appraisal_List.objects.filter(manager=request.user.profile).order_by('employee', 'overall_appraisal__status')
 
-    #!Filtering to get all departmental goals with manager = user + excluding completed OA 
+    #!Filtering to get all departmental goals with manager = user + excluding completed OA
     MCreated_DG_database = Departmental_Goals.objects.filter(manager=request.user.profile).exclude(appraisal__status__contains = 'Completed')
     #!Filtering to get all departmental competencies with manager = user + excluding completed OA
     MCreated_DC_database = Departmental_Competencies.objects.filter(manager=request.user.profile).exclude(appraisal__status__contains = 'Completed')
 #Reports
     records_user_appraisal_database = User_Appraisal_List.objects.filter(overall_appraisal__status__contains='Completed', employee = request.user.profile)
-    
+
     context ={
         #Get all Goals Setting OA of user:
         "rubic1":rubric_overall_appraisal_database1,
-        #Get all Mid Year OA of user: 
+        #Get all Mid Year OA of user:
         "rubic2":rubric_overall_appraisal_database2,
         #Get all End Year OA of user:
         "rubic3":rubric_overall_appraisal_database3,
@@ -268,13 +268,13 @@ def manager_dashboard(request):
         "department_calibration_database":subordinate_calibration_list_database,
         #!Get all subordinate UAL
         "department_entire_subUAL_database": subordinate_appraisal_system_database,
-        #!Get all departmental goals with manager = user + excluding completed OA 
+        #!Get all departmental goals with manager = user + excluding completed OA
         "mcreated_dg_database":MCreated_DG_database,
         #!Get all departmental competencies with manager = user + excluding completed OA
         "mcreated_dc_database":MCreated_DC_database,
 
         "records_UAL_database": records_user_appraisal_database
-        
+
     }
     return render(request, 'login2/HuNetM_Dashboard2.html', context)
 
@@ -287,7 +287,7 @@ def HR_dashboard(request):
 
     #!Filter to get all Mid Year Review OA of user:
     rubric_overall_appraisal_database2 = Overall_Appraisal.objects.filter(user_appraisal_list__employee=request.user.profile, status='Stage 1B').count
-    
+
     #!Filter to get all End Year OA of user:
     rubric_overall_appraisal_database3 = Overall_Appraisal.objects.filter(Q(status='Stage 2') | Q(status='Stage 3') | Q(status='Stage 4'), user_appraisal_list__employee=request.user.profile,).count
 
@@ -300,7 +300,7 @@ def HR_dashboard(request):
 #Peer appraisal:
     #!Filtering to get all UAL with same managers that are undergoing appraisal stage, excluding personal UALs
     user_appraisal_list_database = User_Appraisal_List.objects.filter(manager = request.user.profile.first_Reporting_Manager, overall_appraisal__status__contains='Stage 2').exclude(employee=request.user.profile)
-    
+
     #!Filtering to get all peerAppraisals with viewers = user
     peer_appraisal_database = peerAppraisal.objects.filter(viewer = request.user.profile).order_by('-completion')
 
@@ -337,11 +337,11 @@ def HR_dashboard(request):
     company_completed_appraisal_database=Overall_Appraisal.objects.filter(status='Completed')
 #Reports
     records_user_appraisal_database = User_Appraisal_List.objects.filter(overall_appraisal__status__contains='Completed', employee = request.user.profile)
-    
+
     context ={
         #Get all Goals Setting OA of user:
         "rubic1":rubric_overall_appraisal_database1,
-        #Get all Mid Year OA of user: 
+        #Get all Mid Year OA of user:
         "rubic2":rubric_overall_appraisal_database2,
         #Get all End Year OA of user:
         "rubic3":rubric_overall_appraisal_database3,
@@ -379,7 +379,7 @@ def HR_dashboard(request):
         "department_entire_subUAL_database": employee_appraisal_system_database,
 #Reports
         "records_UAL_database": records_user_appraisal_database
-        
+
     }
     return render(request, 'login2/HuNetHR_Dashboard3.html', context)
 
@@ -394,7 +394,7 @@ def HRmanager_dashboard(request):
 
     #!Filter to get all Mid Year Review OA of user:
     rubric_overall_appraisal_database2 = Overall_Appraisal.objects.filter(user_appraisal_list__employee=request.user.profile, status='Stage 1B').count
-    
+
     #!Filter to get all End Year OA of user:
     rubric_overall_appraisal_database3 = Overall_Appraisal.objects.filter(Q(status='Stage 2') | Q(status='Stage 3') | Q(status='Stage 4'), user_appraisal_list__employee=request.user.profile,).count
 
@@ -402,17 +402,17 @@ def HRmanager_dashboard(request):
     #!Filtering to get all uncompleted UAL of users
     user_appraisal_database = User_Appraisal_List.objects.filter(employee = request.user.profile).exclude( overall_appraisal__status__contains='Completed')
 
-    #!Filtering to get profile of user's manager 
+    #!Filtering to get profile of user's manager
     user_manager_database = Profile.objects.get(user = request.user).first_Reporting_Manager
 
 
 #Peer appraisal:
     #!Filtering to get all UAL with same managers that are undergoing appraisal stage, excluding personal UALs
     user_appraisal_list_database = User_Appraisal_List.objects.filter(manager = request.user.profile.first_Reporting_Manager, overall_appraisal__status__contains='Stage 2').exclude(employee=request.user.profile)
- 
+
     #!Filtering to get all peerAppraisals with viewers = user
     peer_appraisal_database = peerAppraisal.objects.filter(viewer = request.user.profile).order_by('-completion')
-    
+
 #Department:
     #!Filtering to get all profile where manager = user (Subordinates)
     subordinates_database = Profile.objects.filter(first_Reporting_Manager=request.user.profile)
@@ -438,7 +438,7 @@ def HRmanager_dashboard(request):
     #Filtering to get all subordinate uncompleted UAL
     subordinate_appraisal_system_database = User_Appraisal_List.objects.filter(manager=request.user.profile).order_by('employee', 'overall_appraisal__status')
 
-    #!Filtering to get all departmental goals with manager = user + excluding completed OA 
+    #!Filtering to get all departmental goals with manager = user + excluding completed OA
     MCreated_DG_database = Departmental_Goals.objects.filter(manager=request.user.profile).exclude(appraisal__status__contains = 'Completed')
     #!Filtering to get all departmental competencies with manager = user + excluding completed OA
     MCreated_DC_database = Departmental_Competencies.objects.filter(manager=request.user.profile).exclude(appraisal__status__contains = 'Completed')
@@ -474,13 +474,13 @@ def HRmanager_dashboard(request):
     company_appraisal_database=Overall_Appraisal.objects.exclude(status='Completed')
     #!Filtering to get all completed OAs
     company_completed_appraisal_database=Overall_Appraisal.objects.filter(status='Completed')
-    
+
     records_user_appraisal_database = User_Appraisal_List.objects.filter(overall_appraisal__status__contains='Completed', employee = request.user.profile)
 
     context ={
         #Get all Goals Setting OA of user:
         "rubic1":rubric_overall_appraisal_database1,
-        #Get all Mid Year OA of user: 
+        #Get all Mid Year OA of user:
         "rubic2":rubric_overall_appraisal_database2,
         #Get all End Year OA of user:
         "rubic3":rubric_overall_appraisal_database3,
@@ -511,7 +511,7 @@ def HRmanager_dashboard(request):
         "department_calibration_database":subordinate_calibration_list_database,
         #!Get all subordinate UAL
         "department_entire_subUAL_database": subordinate_appraisal_system_database,
-        #!Get all departmental goals with manager = user + excluding completed OA 
+        #!Get all departmental goals with manager = user + excluding completed OA
         "mcreated_dg_database":MCreated_DG_database,
         #!Get all departmental competencies with manager = user + excluding completed OA
         "mcreated_dc_database":MCreated_DC_database,
@@ -562,14 +562,14 @@ def Create_Profile(request, *args, **kwargs):
 
             user_password = 'DenselightPassword1234'
             user_email = profile.email
-            
+
             userprofile, user_created = User.objects.update_or_create(
                 username = final_username,
                 password = make_password(user_password),
                 email = user_email,
                 is_active=True,
             )
- 
+
             if user_created:
                 if promotion_type == 'Employee':
                     group = Group.objects.get(name='Employee')
@@ -588,7 +588,7 @@ def Create_Profile(request, *args, **kwargs):
                 elif promotion_type == 'HR manager':
                     group = Group.objects.get(name='HR manager')
                     userprofile.groups.add(group)
-                
+
                 else:
                     group = Group.objects.get(name='Employee')
 
@@ -602,15 +602,15 @@ def Create_Profile(request, *args, **kwargs):
                     pass
                 profile.save()
                 profileid = profile.id
-                return HttpResponseRedirect(reverse('Detail_Profile_HR', args=(profileid,))) 
+                return HttpResponseRedirect(reverse('Detail_Profile_HR', args=(profileid,)))
         else:
             messages.warning(request, 'Creation invalid. \n Please key in compulsory fields.')
             messages.warning(request, 'Ensure that country code is added to phone field.')
-    
+
     context={
         'form': form
     }
-    
+
     return render(request, 'login2/HR_CreateProfile.html', context)
 
 @login_required(login_url='login')
@@ -639,17 +639,17 @@ def Update_Profile(request, *args, **kwargs):
                 send_mail('Profile Change', email_string, from_email = 'denselight_epmp@consulthunet.com', recipient_list=listOfEmails, fail_silently=True)
             except Exception:
                 pass
-            return HttpResponseRedirect(reverse('Detail_Profile', args=(profile_user.id,))) 
+            return HttpResponseRedirect(reverse('Detail_Profile', args=(profile_user.id,)))
 
         else:
             messages.warning(request, 'Creation invalid. \n Please key in compulsory fields.')
             messages.warning(request, 'Ensure that country code is added to phone field.')
-    
+
     context={
         'form': form,
         'object': profile_user
     }
-    
+
     return render(request, 'login2/UpdateProfile.html', context)
 
 @login_required(login_url='login')
@@ -664,7 +664,7 @@ def Update_Profile_HR(request, *args, **kwargs):
             savestatus = form.save()
 
             if savestatus:
-            
+
                 if promotion_type == 'Employee':
                     if request.user.groups.exists():
                         try:
@@ -705,17 +705,17 @@ def Update_Profile_HR(request, *args, **kwargs):
                             pass
                     group = Group.objects.get(name='HR manager')
                     profile_user.user.groups.add(group)
-            
-                
+
+
             return HttpResponseRedirect(reverse('Detail_Profile_HR', args=(profile_user.id,)))
-             
+
         else:
             messages.warning(request, 'Creation invalid. \n Please key in compulsory fields.')
             messages.warning(request, 'Ensure that country code is added to phone field.')
     context={
         'form': form
     }
-    
+
     return render(request, 'login2/HR_UpdateProfile.html', context)
 
 @login_required(login_url='login')
@@ -729,7 +729,7 @@ def Detail_Profile(request, *args, **kwargs):
     qualifications_database = Qualifications.objects.filter(employee = user_profile).order_by('-id')[:5]
     profile_skills_database1 = Skills.objects.filter(employee = user_profile).order_by('-id')[:3]
     profile_skills_database2 = Skills.objects.filter(employee = user_profile).order_by('-id')[3:6]
-    
+
     context={
         'object': user_profile,
         'comp_overall_appraisal_database': records_user_appraisal_database,
@@ -750,7 +750,7 @@ def Detail_Profile_HR(request, *args, **kwargs):
     qualifications_database = Qualifications.objects.filter(employee = user_profile).order_by('-id')[:5]
     profile_skills_database1 = Skills.objects.filter(employee = user_profile).order_by('-id')[:3]
     profile_skills_database2 = Skills.objects.filter(employee = user_profile).order_by('-id')[3:6]
-    
+
     context={
         'object': user_profile,
         'comp_overall_appraisal_database': records_user_appraisal_database,
@@ -842,7 +842,7 @@ def Profile_Upload(request):
     counter = 0
     #Context variable, tell them order of files
     context={
-        'order': 'Order of CSV should be name, email, message' 
+        'order': 'Order of CSV should be name, email, message'
     }
 
     if request.method == 'GET':
@@ -852,7 +852,7 @@ def Profile_Upload(request):
     #Check if its a csv file
     if not csv_file.name.endswith('.csv'):
         messages.error(request, 'This is not a csv file')
-    
+
     data_set = csv_file.read().decode('UTF-8')
     io_string = io.StringIO(data_set)
     #Avoid header
@@ -895,15 +895,15 @@ def Profile_Upload(request):
                 id = _id
                 )
                 userdepartment = department_created.save()
-        
+
         elif departmentname == "":
             userdepartment = alldepartments[0]
 
         try:
-            userdepartment = Departments.objects.get(name = departmentname) 
+            userdepartment = Departments.objects.get(name = departmentname)
         except Exception:
             pass
-                
+
 
         manager_name = ""
         manager_name += column[7]
@@ -912,8 +912,8 @@ def Profile_Upload(request):
             manager_profile = Profile.objects.get(name=manager_name)
         except Exception:
             pass
-        
-        
+
+
         HOD_name = ""
         HOD_name += column[8]
 
@@ -935,7 +935,7 @@ def Profile_Upload(request):
             created = True
         except:
             pass
-        
+
         access_type = ''
         access_type += column[9]
         lowered_access_type = access_type.lower()
@@ -960,7 +960,6 @@ def Profile_Upload(request):
                 send_mail('Performance Management System Login Details', email_string, from_email = 'denselight_epmp@consulthunet.com', recipient_list=[profile_created.email], fail_silently=True)
             except Exception:
                 pass
-            
+
     context = {}
     return render(request, "login2/Profile_Upload.html", context)
-
