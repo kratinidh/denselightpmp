@@ -1,0 +1,589 @@
+    1  sudo mv authorized_keys /home/ming/ssh
+    2  sudo mv authorized_keys /home/ming/ssh/
+    3  sudo mv authorized_keys /home/ming/.ssh
+    4  cd home
+    5  cd ming
+    6  cd home/ming/
+    7  cd /home/ming
+    8  sudo mv authorized_keys /home/ming/.ssh
+    9  adduser Ben
+   10  adduser ming
+   11  usermod -aG sudo ming
+   12  sudo nano /etc/ssh/sshd_config
+   13  sudo nano /etc/ssh/sshd_config
+   14  sudo ufw app list
+   15  sudo ufw allow openssh
+   16  sudo ufw enable
+   17  sudo ufw startup
+   18  sudo ufw status
+   19  python
+   20  python 3.8.1
+   21  python 3
+   22  python3
+   23  pip install python 3.8.1
+   24  install python 3.8.1
+   25  sudo apt update
+   26  apt list --upgradeable
+   27  sudo apt install python3.8.1
+   28  sudo apt install python3.8
+   29  python 3.8
+   30  python3.8
+   31  sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.6 2
+   32  sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.8.1 1
+   33  sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.8 1
+   34  sudo update-alternatives --config python
+   35  sudo apt-get install -y python3-pip
+   36  pip3
+   37  sudo -H pip3 install virtualenv
+   38  ls
+   39  mkdir djangoprojectdir
+   40  ls
+   41  cd djangoprojectdir/
+   42  cd
+   43  cd /home/ming
+   44  cd /djangoprojctdir
+   45  ls
+   46  cd
+   47  ls
+   48  cd djangoprojectdir
+   49  cd /home/ming
+   50  ls
+   51  mkdirdjangoprojectdir
+   52  mkdir djangoprojectditr
+   53  mkdir djangoprojectdir
+   54  ls
+   55  cd djangoprojectdir
+   56  virtualenv djangoprojectenv
+   57  ls
+   58  cd djangoprojectenv/
+   59  ls
+   60  ../
+   61  cd ./
+   62  cd ../
+   63  cd djangoprojectenv/
+   64  source bin/activate
+   65  cd ../
+   66  pip3 install gunicorn
+   67  pip3 install django3.0.6
+   68  pip3 install django==3.0.6
+   69  cd ../
+   70  django-admin startproject mysite djangoprojectdir
+   71  l;s
+   72  ls
+   73  cd djangoprojectdir
+   74  ls
+   75  pip3 install -r requirements.txt
+   76  pip3 install psycopg2-binary
+   77  pip3 install pycparser==2.20
+   78  pip3 install pylint==2.5.2
+   79  pip3 install pytz==2020.1
+   80  pip3 install six==1.15.0
+   81  pip3 install sorl-thumbnail==0.3.1
+   82  pip3 install sorl-thumbnail
+   83  sqlparse
+   84  pip3 install sqlparse==0.3.1
+   85  pip freeze
+   86  pip3 install Babel==2.8.0
+   87  pip freeze
+   88  pip3 install -r requirements.txt
+   89  pip freeze
+   90  sudo apt-get update
+   91  sudo apt-get install python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx
+   92  sudo -u postgres psql
+   93  sudo postgres psql
+   94  postgres psql
+   95  postgres
+   96  psql
+   97  sudo -u postgres psql
+   98  python manage.py makemigrations
+   99  python manage.py migrate
+  100  python manage.py createsuperuser
+  101  python manage.py collectstatic
+  102  sudo ufw allow 9376
+  103  manage.py runserver 0.0.0.0:9376
+  104  manage.py runserver
+  105  python manage.py runserver
+  106  python manage.py runserer
+  107  python manage.py runserver
+  108  sudo ufw allow 8000
+  109  manage.py runserver 0.0.0.0:8000
+  110  python manage.py runserver 0.0.0.0:8000
+  111  gunicorn --bind 0.0.0.0:8000 mysite.wsgi
+  112  deactivate
+  113  pip3 install gunicorn
+  114  pip3 install django==2.8.2
+  115  pip3 install django==3.0.6
+  116  django
+  117  pip3 freeze
+  118  pip3 install requirements.txt
+  119  pip3 install -r requirements.txt
+  120  pip3 freeze
+  121  sudo systemctl start gunicorn.socket
+  122  sudo systemctl enable gunicorn.socket
+  123  file /run/gunicorn.sock
+  124  sudo systemctl status gunicorn.socket
+  125  curl --unix-socket /run/gunicorn.sock localhost
+  126  sudo systemctl status gunicorn.socket
+  127  file /run/gunicorn.sock
+  128  sudo systemctl status gunicorn.socket
+  129  sudo systemctl status gunicorn
+  130  sudo shutdown -r now
+  131  cd /home/ming
+  132  ls
+  133  cd /djangoprojectdir
+  134  cd djangoprojectdir/
+  135  sudo systemctl start gunicorn.socket
+  136  sudo systemctl enable gunicorn.socket.
+  137  sudo systemctl enable gunicorn.socket
+  138  file /run/gunicorn.sock
+  139  sudo systemctl status gunicorn.socket
+  140  curl --unix-socket /run/gunicorn.sock localhots
+  141  curl --unix-socket /run/gunicorn.sock localhost
+  142  sudo systemctl daemon-reload
+  143  sudo systemctl restart gunicorn.socket gunicorn.service
+  144  curl --unix-socket /run/gunicorn.sock localhost
+  145  sudo systemctl status gunicorn
+  146  sudo apt install nginx
+  147  sudo ln -s /etc/nginx/sites-available/djangoproject /etc/nginx/sites-enabled
+  148  sudo nginx -t
+  149  sudo systemctl restart nginx
+  150  sudo ufw delete allow 8000
+  151  sudo ufw delete allow 9376
+  152  sudo ufw delete allow 9375
+  153  sudo ufw allow 'Nginx Full'
+  154  pip3 install boto3
+  155  pip3 install django-storages
+  156  python manage.py collectstatic
+  157  pip3 install psycopg2
+  158  python manage.py collectstatic
+  159  cd /home/ming
+  160  ls
+  161  cd djangoprojectdir/
+  162  pip3 install django-storages
+  163  cd /etc/nginx/sites-available
+  164  ls
+  165  sudo nano djangoproject
+  166  sudo shutdown -r now
+  167  cd home/ming/
+  168  cd home/
+  169  cd /home
+  170  cd /ming
+  171  cd /home/ming
+  172  ls
+  173  chown ming djangoprojectdir/
+  174  ls -l
+  175  cd djangoprojectdir/
+  176  ls
+  177  ls -l
+  178  sudo shutdown -r now
+  179  cd home/ming/
+  180  cd /home/ming
+  181  sudo shutdown -r now
+  182  sudo tail -F /var/log/nginx/error.log
+  183  sudo systemctl daemon-reload
+  184  sudo systemctl restart gunicorn
+  185  sudo nginx -t
+  186  sudo systemctl restart nginx
+  187  sudo ln -s /etc/nginx/sites-available/djangoproject /etc/nginx/sites-enabled
+  188  sudo nginx -t
+  189  sudo systemctl restart nginx
+  190  sudo ufw allow 'Nginx Full
+  191  '
+  192  sudo ufw allow 'Nginx Full'
+  193  sudo systemctl -u gunicorn
+  194  sudo journalctl -u gunicorn
+  195  cd /home/ming
+  196  cd djangoprojectdir/
+  197  ls
+  198  gunicorn --log-file=- mysite.wsgi:application
+  199  sudo systemctl status gunicorn
+  200  gunicorn --log-file=- mysite.wsgi:application
+  201  ../
+  202  cd ./
+  203  cd ../
+  204  chown ming djangoprojectdir
+  205  ls -l
+  206  cd djangoprojectdir/
+  207  chown ming postgresql
+  208  ls
+  209  sudo journalctl -u gunicorn
+  210  sudo journalctl -u gunicorn socket
+  211  sudo systemctl status gunicorn socket
+  212  sudo systemctl start gunicorn
+  213  sudo systemctl enable gunicorn
+  214  sudo systemctl status gunicorn
+  215  file /run/gunicorn.sock
+  216  sudo systemctl status gunicorn.socket
+  217  curl --unix-socket /run/gunicorn.sock localhost
+  218  ls -al /run/gunicorn.sock
+  219  curl --version
+  220  sudo systemctl status gunicorn
+  221  sudo systemctl enable gunicorn.socket
+  222  sudo systemctl start gunicorn.socket
+  223  sudo systemctl status gunicorn.socket
+  224  cd /home/ming/djangoprojectdir/
+  225  curl --unix-socket /run/gunicorn.sock localhost
+  226  sudo shutdown -r now
+  227  sudo systemctl start gunicorn.socket
+  228  sudo systemctl enable gunicorn.socket
+  229  sudo systemctl status gunicorn.socket
+  230  file /run/gunicorn.sock
+  231  sudo systemctl status gunicorn.socket
+  232  curl --unix-socket /run/gunicorn.sock localhost
+  233  sudo ufw delete allow 8000
+  234  sudo ufw allow 'Nginx Full'
+  235  curl --unix-socket /run/gunicorn.sock localhost
+  236  cd /home/ming/djangoprojectdir/
+  237  ls
+  238  cd djangoprojectenv/
+  239  ls
+  240  cd bin/
+  241  ls
+  242  cd activate/
+  243  cd /activate
+  244  ls
+  245  cd activate/
+  246  cd /activate/
+  247  ../
+  248  cd ../
+  249  cd /bin/activate
+  250  cd ../
+  251  source djangoprojectenv/bin/activate
+  252  sudo ufw allow 8000
+  253  python manage.py runserver 0.0.0.0:8000
+  254  pip3 install django-storages
+  255  python manage.py runserver 0.0.0.0:8000
+  256  python pip3 install boto-3
+  257  python pip3 install boto3
+  258  pip3 install boto-3
+  259  pip3 install boto3
+  260  python manage.py runserver 0.0.0.0:8000
+  261  gunicorn --bind 0.0.0.0:8000 mysite.wsgi
+  262  deactivate
+  263  pip3 install boto3
+  264  pip3 install django-storages
+  265  pip freeze
+  266  pip3 freeze
+  267  sudo systemctl start gunicorn
+  268  sudo systemctl enable gunicorn
+  269  sudo systemctl status gunicorn
+  270  ls
+  271  sudo systemctl daemon-reload
+  272  sudo systemctl restart gunicorn
+  273  sudo ln -s /etc/nginx/sites-available/djangoproject /etc/nginx/sites-enabled
+  274  sudo nginx -t
+  275  sudo systemctl restart nginx
+  276  sudo ufw delete allow 8000
+  277  sudo ufw allow 'Nginx Full'
+  278  curl --unix-socket /run/gunicorn.sock localhost
+  279  sudo systemctl daemon-reload
+  280  sudo systemctl restart gunicorn
+  281  sudo systemctl status gunicorn
+  282  curl --unix-socket /run/gunicorn.sock localhost
+  283  sudo apt-get update
+  284  sudo apt-get -y upgrade
+  285  sudo apt-get install python3
+  286  sudo pip3 install virtualenv
+  287  sudo pip install boto3
+  288  pip3 install boto3
+  289  pip3 install django-storages
+  290  python manage.py collectstatic
+  291  yes
+  292  python manage.py collectstatic
+  293  sudo ufw allow 8000
+  294  sudo ufw delete allow 8000
+  295  ls
+  296  cd djangoprojectenv/bin/activate
+  297  cd /djangoprojectenv/bin/activate
+  298  cd djangoprojectenv/
+  299  cd bin/activate
+  300  cd bin/
+  301  ls
+  302  cd activate
+  303  cd /activate
+  304  cd /activate/
+  305  cd activate/
+  306  cd ../
+  307  cd bin/activate
+  308  cd /bin/activate/
+  309  cd /bin/activate
+  310  cd bin/activate/
+  311  ls
+  312  /cd bin
+  313  cd bin
+  314  cd activate
+  315  activate
+  316  /activate
+  317  activate
+  318  cd ../
+  319  cd bin/activate/
+  320  cd bin/activate
+  321  cd /bin/activate/
+  322  cd /bin/activate
+  323  pip3 install boto3
+  324  pip3 install django-storages
+  325  cd /etc/nginx/sites-available/
+  326  sudo-nano djangoproject
+  327  sudo nano djangoproject
+  328  sudo shutdown -r now
+  329  python manage.py collectstatic
+  330  pip3 install python-decouple
+  331  service gunicorn restart
+  332  sudo netstat -plutn | grep -i unicorn
+  333  sudo ps wwaux | grep grep -i unicorn
+  334  service gunicorn status
+  335  sudo journalctl -u gunicorn
+  336  service gunicorn restart
+  337  sudo systemctl status gunicorn socket
+  338  gunicorn --log-file=-
+  339  gunicorn --log-file=- mysite.wsgi:application
+  340  sudo gunicorn restart
+  341  service gunicorn restart
+  342  gunicorn --log-file=- mysite.wsgi:application
+  343  gunicorn --bind 0.0.0.0:8000 mysite.wsgi:application
+  344  gunicorn --bind 0.0.0.0:8000 mysite.wsgi
+  345  gunicorn --bind 0.0.0.0:8000 mysite.wsgi:application
+  346  gunicorn --log-file=- mysite.wsgi:application
+  347  gunicorn --log-file=- mysite.wsgi
+  348  gunicorn --log-file=- mysite.wsgi:application
+  349  gunicorn --log-file=- Appraisals.wsgi:application
+  350  gunicorn --log-file=- mysite.wsgi:application
+  351  sudo gunicorn restart
+  352  service gunicorn restart
+  353  systemctl daemon-reload
+  354  service gunicorn restart
+  355  systemctl daemon-reload
+  356  service gunicorn restart
+  357  sudo systemctl status gunicorn.socket
+  358  sudo systemctl status gunicorn.service
+  359  systemctl daemon-reload
+  360  service gunicorn restart
+  361  sudo systemctl status gunicorn.socket
+  362  sudo systemctl status gunicorn.service
+  363  usermod -aG sudo ming
+  364  ufw status
+  365  sudo systemctl status gunicorn.service
+  366  gunicorn --log-file=- mysite.wsgi:application
+  367  ls
+  368  cd home
+  369  cd home/
+  370  cd /home
+  371  ls
+  372  cd /ming
+  373  cd ming/
+  374  ls
+  375  cd djangoprojectdir/
+  376  ls
+  377  cd djangoprojectenv/bin/activate
+  378  cd djangoprojectenv/bin/activate/
+  379  cd /djangoprojectenv/bin/activate/
+  380  cd djangoprojectenv/bin/activate/
+  381  source djangoprojectenv/bin/activate
+  382  sudo ufw allow 8000
+  383  python manage.py runserver 8000
+  384  pip3 install decouple
+  385  pip3 install django-decouple
+  386  python manage.py runserver 8000
+  387  service gunicorn restart
+  388  sudo systemctl status gunicorn.socket
+  389  sudo systemctl status gunicorn.service
+  390  gunicorn --bind 0.0.0.0:8000 mysite.wsgi
+  391  sudo systemctl start gunicorn
+  392  sudo systemctl enable gunicorn
+  393  sudo systemctl status gunicorn
+  394  deactivate
+  395  pip3 install gunicorn
+  396  sudo systemctl status gunicorn
+  397  service gunicorn restart
+  398  sudo systemctl status gunicorn
+  399  sudo systemctl daemon-reload
+  400  sudo systemctl restart gunicorn
+  401  sudo systemctl status gunicorn
+  402  sudo nginx -t
+  403  sudo systemctl restart nginx
+  404  sudo ufw delete allow 8000
+  405  sudo ufw allow 'Nginx Full'
+  406  sudo systemctl restart gunicorn
+  407  sudo systemctl status gunicorn
+  408  sudo systemctl status postgresql
+  409  service gunicorn restart
+  410  sudo systemctl restart nginx
+  411  sudo systemctl status gunicorn.service
+  412  sudo add-apt-repository ppa:certbot/certbot
+  413  sudo apt install python-certbot-nginx
+  414  sudo nano /etc/nginx/sites-available/djangoproject
+  415  sudo ufw status
+  416  sudo certbot --nginx -d hunetsystem.com -d www.hunetsystem.com
+  417  source djangoprojectenv/bin/activate
+  418  python manage.py runserver
+  419  sudo systemctl start gunicorn
+  420  sudo systemctl enable gunicorn
+  421  sudo systemctl status gunicorn
+  422  sudo systemctl daemon-reload
+  423  sudo systemctl restart gunicorn
+  424  sudo systemctl status gunicorn
+  425  sudo systemctl status gunicorn.service
+  426  sudo systemctl status gunicorn.socket
+  427  sudo systemctl status gunicornsudo ufw allow 8000
+  428  sudo ufw allow 8000
+  429  gunicorn --bind 0.0.0.0:8000 mysite.wsgi
+  430  sudo systemctl start gunicorn
+  431  sudo systemctl enable gunicorn
+  432  sudo systemctl status gunicorn
+  433  sudo nginx -t
+  434  sudo shutdown -r now
+  435  cd /home/ming/
+  436  cd djangoprojectdir/
+  437  source djangoprojectenv/bin/activate
+  438  sudo ufw allow 8000
+  439  python manage.py runserver
+  440  python manage.py runserver 0.0.0.0:8000
+  441  gunicorn --bind 0.0.0.0:8000 mysite.wsgi
+  442  deactivate
+  443  sudo systemctl start gunicorn
+  444  sudo systemctl enable gunicorn
+  445  sudo systemctl status gunicorn
+  446  sudo systemctl daemon-reload
+  447  sudo systemctl restart gunicorn
+  448  sudo nginx -t
+  449  sudo systemctl restart nginx
+  450  sudo ufw delete allow 8000
+  451  sudo ufw allow 'Nginx Full'
+  452  source djangoprojectenv/bin/activate
+  453  sudo systemctl restart gunicorn
+  454  sudo systemctl start gunicorn
+  455  sudo systemctl enable gunicorn
+  456  sudo systemtcl status gunicorn
+  457  sudo systemctl status gunicorn
+  458  sudo systemctl status gunicorn.socket
+  459  sudo ufw allow 'Nginx Full'
+  460  deactivate
+  461  sudo certbot --nginx -d hunetsystem.com -d www.hunetsystem.com
+  462  sudo certbot renew --dry-run
+  463  sudo systemctl restart gunicorn
+  464  python manage.py collectstatic
+  465  sudo systemctl restart gunicorn
+  466  sudo restart gunicorn
+  467  sudo systemctl restart gunicorn
+  468  cd home/
+  469  s
+  470  ls
+  471  cd /home/
+  472  cd /home/ming/djangoprojectdir/
+  473  ls
+  474  source djangoprojectenv/bin/activate
+  475  python manage.py collectstatic
+  476  yes
+  477  python manage.py collectstatic
+  478  sudo systemctl restart gunicorn
+  479  cd /home/ming/djangoprojectdir/
+  480  source djangoprojectenv/bin/activate
+  481  python manage.py collectstatic
+  482  sudo systemctl restart gunicorn
+  483  python manage.py collectstatic
+  484  sudo systemctl restart gunicorn
+  485  python manage.py collectstatic
+  486  sudo systemctl restart gunicorn
+  487  cd /home/ming/djangoprojectdir/
+  488  source djangoprojectenv/bin/activate
+  489  python manage.py makemigrations
+  490  python manage.py migrate
+  491  sudo systemctl restart gunicorn
+  492  cd /home/ming/djangoprojectdir/
+  493  source djangoprojectenv/bin/activate
+  494  python manage.py makemigrations
+  495  python manage.py migrate
+  496  sudo systemctl restart gunicorn
+  497  sudo systemctl restart nginx
+  498  sudo systemctl restart gunicorn
+  499  sudo systemctl restart nginx
+  500  sudo systemctl restart gunicorn
+  501  sudo systemctl restart nginx
+  502  sudo systemctl restt gunicorn
+  503  sudo systemctl status nginx
+  504  sudo systemctl status gunicorn
+  505  sudo systemctl restart nginx
+  506  sudo systemctl restart gunicorn
+  507  sudo systemctl restart nginx
+  508  sudo systemctl restart gunicorn
+  509  sudo systemctl restart nginx
+  510  sudo systemctl restart gunicorn
+  511  sudo systemctl restart nginx
+  512  sudo /usr/sbin/nginx -s reload
+  513  sudo systemctl start nginx
+  514  sudo systemctl restart nginx
+  515  sudo systemctl restart gunicorn
+  516  python manage.py collectstatic
+  517  sudo systemctl restart nginx
+  518  sudo systemctl restart gunicorn
+  519  ls
+  520  ls \
+  521  ls -a
+  522  ls -al
+  523  ls -l
+  524  ls 
+  525  ls
+  526  ls -all
+  527  ls l
+  528  ls -l
+  529  ls
+  530  ls \
+  531  ls /
+  532  cd home
+  533  cd home/
+  534  cd /home/
+  535  cd /ming
+  536  cd /home/ming/djangoprojectdir/
+  537  ls -a
+  538  cd ..
+  539  ls
+  540  cd djangoprojectdir/
+  541  ls djangoprojectenv/
+  542  ls djangoprojectenv/bin/
+  543  source djangoprojectenv/bin/activate
+  544  python manage.py collectstatic
+  545  sudo systemctl restart nginx
+  546  ls /home/
+  547  cd /home/ming/djangoprojectdir/
+  548  source djangoprojectenv/bin/activate
+  549  python manage.py collectstatic
+  550  sudo systemctl restart gunicorn
+  551  sudo nano /etc/ssh/sshd_config
+  552  sudo nano /etc/ssh/sshd_config
+  553  sudo nano etc/ssh/sshd_config
+  554  sudo nano etc/sshd/sshd_config
+  555  sudo nano /etc/ssh/sshd_config
+  556  root
+  557  settings.py
+  558  find / -name "N settings"
+  559  find / -name "*N settings*"
+  560  find / -name "*denselight*"
+  561  cd /tmp/
+  562  ls
+  563  git init
+  564  git add .
+  565  git commit -m "database"
+  566  git push
+  567  git remote add https://github.com/kratinidh/denselightdatabase.git
+  568  git push
+  569  git remote add origin https://github.com/kratinidh/denselightdatabase.git
+  570  git push
+  571  git push --set-upstream origin master
+  572  find / -name "*denselight*"
+  573  cd /home/ming/djangoprojectdir/
+  574  ls
+  575  git status
+  576  git pull
+  577  ls
+  578  git status
+  579  sudo lsof -i:8000
+  580  docker
+  581  ls
+  582  nano ming 
+  583  ls
+  584  screen -ls /
+  585  apt list --installed
+  586  ps -aux
+  587  nano /etc/nginx/nginx.conf 
+  588  history
+  589  history >>abc.txt
