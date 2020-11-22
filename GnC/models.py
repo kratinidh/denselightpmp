@@ -1,11 +1,11 @@
-from django.db import models 
+from django.db import models
 from datetime import datetime
 from datetime import date
 from Profile.models import Profile
 from Profile.models import Departments
 from Appraisals.models import Appraisal, Overall_Appraisal, User_Appraisal_List
 from django.core.validators import MaxValueValidator, MinValueValidator
- 
+
 class goal_comment(models.Model):
     goal = models.ForeignKey('Goals', blank = False, null = False, on_delete = models.CASCADE)
     comments = models.TextField(blank = False, null = True)
@@ -71,7 +71,7 @@ class Goals(models.Model):
         (4, '4 - Exceeds Expectations'),
         (5, '5 - Far Exceed Expectations')
     ]
-    
+
     TRACKING_CHOICES = [
         ('null', 'null'),
         ('On Track', 'On Track'),
@@ -88,7 +88,7 @@ class Goals(models.Model):
 
     MID_user_comments = models.TextField(max_length = 2000, blank = False, null = False, default='NIL')
     MID_manager_comments=models.TextField(max_length= 2000, blank = False, null = False, default='NIL')
-    
+
     user_rating = models.IntegerField(choices = RATING_CHOICES, blank = False, null = False, default = 1)
     manager_rating = models.IntegerField(choices = RATING_CHOICES, blank = False, null = False, default = 1)
     board_rating = models.IntegerField(choices = RATING_CHOICES, blank = False, null = False, default = 1)
@@ -104,7 +104,7 @@ class Goals(models.Model):
 
     def get_kpi_filtered_completed(self):
         return self.kpi_set.filter(progress='Completed')
-    
+
     def get_kpi_percentage(self):
         total = self.kpi_set.all().count()
         cnt = self.kpi_set.filter(progress='Completed').count()
@@ -174,4 +174,12 @@ class Departmental_Competencies(models.Model):
         return self.summary
 
 
-    
+######
+class Comment_Box(models.Model):
+    goal = models.ForeignKey('Goals', blank = False, null = False, on_delete = models.CASCADE)
+    comment = models.TextField(blank = False, null = True)
+    created_on = models.DateTimeField(auto_now_add=True)
+    created_by = models.ForeignKey(Profile, blank = False, null = True, on_delete = models.CASCADE)
+
+    def __str__(self):
+        return self.created_by.name + ": " + self.comment

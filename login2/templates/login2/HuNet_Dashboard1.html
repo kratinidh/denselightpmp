@@ -1,30 +1,30 @@
 {%extends 'homepage.html'%}
-{% load static %}  
- 
-<head> 
+{% load static %}
+
+<head>
     <title>{%block title%}Dashboard{%endblock%}</title>
 
-    {%block script1%} 
+    {%block script1%}
     <!--css-->
     <link rel = "stylesheet" type="text/css" href = "{% static 'login2/HuNet_DashboardV1.css' %}">
- 
+
     <!--jquery-->
-    <script src="js/jquery-3.4.1.min.js"></script> 
+    <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/custom.js"></script>
-    
+
     <!--bootstrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    
+
     <!--django bootstrap modals-->
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}">
 
-    <!--font--> 
+    <!--font-->
     <link href="https://fonts.googleapis.com/css2?family=Hind:wght@600&display=swap" rel="stylesheet"> <!--hind-->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"> <!--open sans-->
-    
-    <script> 
+
+    <script>
         /*tabs*/
         function openCity(evt, cityName, classOfTabContent, classOfTabLink) {
             var i, x, tablinks,count;
@@ -48,7 +48,7 @@
         $('.accordion-toggle').click(function(){
             $('.hiddenRow').hide();
             $(this).next('tr').find('.hiddenRow').show();
-        }); 
+        });
 
 
         /*tooltips*/
@@ -66,11 +66,11 @@
 </head>
 
 <body>
-    {%block content%} 
+    {%block content%}
     <div class = "container wrapper">
             <br>
             <p style = "font-size: 18px">Welcome, <strong style = "text-transform: uppercase;">{{request.user.profile}}</strong></p>
-             
+
             <div class = "card-deck overview-card-row">
 
                 <div class = "card card-body bg-c-blue">
@@ -97,7 +97,7 @@
             </div>
 
             <br><br>
-            <div class = "tab_dashboard"> 
+            <div class = "tab_dashboard">
                 <button class="tablinks2 active" onclick="openCity(event, 'user', 'dashboardcontent', 'tablinks2')">{{request.user.profile.name}}</button>
                 <button class="tablinks2" onclick="openCity(event, 'peer', 'dashboardcontent', 'tablinks2')">Peer</button>
                 <button class="tablinks2" onclick="openCity(event, 'records', 'dashboardcontent', 'tablinks2')">Records</button>
@@ -108,7 +108,7 @@
             <section class='dashboardcontent shadow-sm' id='user'>
 
                 {%if user_appraisal_list.count == 0 %}
-                
+
                 <section class="appraisalcontent" id="appraisalnone">
                     There are no ongoing appraisals
                 </section>
@@ -120,20 +120,20 @@
                     <div>
                         <br>
                         <div class = "choose-appraisal row justify-content-start p-4 align-items-center shadow"  style = "background: linear-gradient(45deg, #2952A4, #83a1c9); border-radius: 5px; color: white">
-                            
+
                             <div class="tab_appraisal">
                                 <button id = "appraisal-button" type="button" data-toggle="dropdown" class="btn dropdown-toggle">Choose Appraisal</button>
                                 <div class = "dropdown-menu">
                                     {% if user_appraisal_list.count == 0 %}
                                     <a class="tablinks1 dropdown-item" onclick="openCity(event, 'appraisalnone', 'appraisalcontent', 'tablinks1')">Appraisal: None</a>
                                     {%else%}
-                        
+
                                     {%for appraisal in user_appraisal_list%}
                                     <a class="tablinks1 dropdown-item" onclick="openCity(event, 'appraisal{{forloop.counter}}', 'appraisalcontent', 'tablinks1')">Appraisal {{appraisal.overall_appraisal.name}}</a>
                                     {%endfor%}
                                     {%endif%}
                                 </div>
-                            </div> 
+                            </div>
                             <h3 style = "font-size: 24px; font-weight: 600;"class = "my-auto ml-3">{{appraisal.overall_appraisal.name}} - {{appraisal.overall_appraisal.appraisal_category.name}}</h3>
 
                             <p class = "m-0 p-0 ml-auto">
@@ -147,17 +147,17 @@
                             </p>
                         </div>
                     </div>
-                
+
                     <br><br>
                     <div class="innertab">
                         <button id="slide-item-1" class="tablinks active" onclick="openCity(event, 'goals{{forloop.counter}}', 'tabcontent{{forloop.counter}}', 'tablinks')">Goals</button>
                         <button id="slide-item-2" class="tablinks" onclick="openCity(event, 'competencies{{forloop.counter}}', 'tabcontent{{forloop.counter}}', 'tablinks')">Core Values</button>
                         <button id="slide-item-3" class="tablinks" onclick="openCity(event, 'skills{{forloop.counter}}', 'tabcontent{{forloop.counter}}', 'tablinks')">Skills</button>
                         <button id="slide-item-4" class="tablinks" onclick="openCity(event, 'self_rating{{forloop.counter}}', 'tabcontent{{forloop.counter}}', 'tablinks')">Ratings</button>
-                        
+
                         <div class="slider">
                             <div class="bar"></div>
-                        </div> 
+                        </div>
                     </div>
 
                     <br>
@@ -178,7 +178,7 @@
 
                         {%elif appraisal.overall_appraisal.status == 'Stage 1B' and appraisal.status == 'S1BEmployee'%}
                         <a href="{%url 'Appraisals:S1BEtS1BM_Appraisal' appraisal.id%}"><button class = "sendAppraisal btn mr-2" >Submit</button></a>
-                      
+
 
                         {%elif appraisal.overall_appraisal.status == 'Stage 1B' and appraisal.status == 'S1BReview'%}
                         <a href="{%url 'Appraisals:S1BRtS1BM_Appraisal' appraisal.id%}"><button class = "sendAppraisal btn mr-2" >Submit</button></a>
@@ -203,7 +203,7 @@
 
                         </div>
                         </div>
-                        
+
                         {%elif appraisal.overall_appraisal.status == 'Stage 1B' and appraisal.status == 'S1BEmployee' or appraisal.overall_appraisal.status == 'Stage 1B' and appraisal.status == 'S1BReview' %}
                         <div class="btn-group dropdown">
                             <button type= "button" class= "addButton btn dropdown-toggle" data-toggle="dropdown">
@@ -233,7 +233,7 @@
                             <a class="dropdown-item" href = "{%url 'Appraisals:Update_AppraisalG' appraisal.id%}">Add Employee's Ratings</a>
                             </div>
                         </div>
-                        
+
                         {%else%}
                         <div class="btn-group dropdown">
                             <button type= "button" class= "addButton btn dropdown-toggle" data-toggle="dropdown">
@@ -249,9 +249,9 @@
                             </div>
                         </div>
                         {%endif%}
-                                              
+
                     </div>
-                    <br> 
+                    <br>
 
                     <!--<div class="tab-pane fade show active" id="goals{{forloop.counter}}" role="tabpanel" aria-labelledby="nav-goals-tab">-->
                     <div id="goals{{forloop.counter}}" class="tabcontent{{forloop.counter}}" style = "display:block;">
@@ -271,7 +271,7 @@
                                             <th style = "width: 15%;">Actions</th>
                                         </tr>
                                     </thead>
-                                    
+
                                     <tbody>
                                         {% if appraisal.overall_appraisal.departmental_goals_set.all.count == False %}
                                         <td colspan="5">Request your manager/supervisor to add Departmental Goals</td>
@@ -284,7 +284,7 @@
                                             <td>{{goals.summary}}</td>
                                             <td>{{goals.due}}</td>
                                             <td><a href="{%url 'GnC:Detail_Departmental_Goals' goals.id %}" title = "See More Details"><i class="fa fa-ellipsis-h"></i></a></td>
-                                        </tr>  
+                                        </tr>
                                         {%endif%}
                                         {%endfor%}
                                         {%endif%}
@@ -305,13 +305,14 @@
                                 <table class = "table mb-0 pb-0">
                                     <thead class = "thead-light">
                                         <tr>
-                                            <th style = "width: 15%;">Category</th>
-                                            <th style = "width: 25%">Goal Title</th>
-                                            <th style = "width: 5%"></th>
-                                            <th style = "width: 15%;">Due</th>
-                                            <th style = "width: 10%">Weightage</th>
-                                            <th style = "width: 15%">Progress</th>
-                                            <th colspan=4 style = "width: 15%;">Actions</th> 
+                                          <th style = "width: 10%;">Category</th>
+                                          <th style = "width: 10%;">Comments</th>
+                                          <th style = "width: 20%">Goal Title</th>
+                                          <th style = "width: 5%"></th>
+                                          <th style = "width: 15%;">Due</th>
+                                          <th style = "width: 10%">Weightage</th>
+                                          <th style = "width: 15%">Progress</th>
+                                            <th colspan=4 style = "width: 15%;">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -323,6 +324,7 @@
                                         {% for goals in appraisal.goals_set.all %}
                                         <tr>
                                             <td>{{goals.goal_category.name}}</td>
+                                            <td><a href="{%url 'GnC:Create_User_Comments' goals.id %}">Add comment</a></td>
                                             <td>{{goals.summary}}</td>
                                             <td><button id = "seeMore" data-toggle="collapse" data-target="#collapse{{goals.id}}" class="accordion-toggle" type="button" alt = "See More"><i class="fa fa-chevron-down"></i></button></td>
                                             <td>{{goals.due}}</td>
@@ -350,7 +352,16 @@
                                             {%endif%}
                                             <td><a title = "See More Details" href = "{%url 'GnC:Detail_Goals' goals.id %}"><i class="fa fa-ellipsis-h"></i></a></td>
                                         </tr>
-                                        
+
+                                        {%for comment_box in goals.comment_box_set.all%}
+                                        <tr>
+                                        <th colspan="2">Employee comments</th>
+                                        <td colspan="2">{{comment_box.comment}}</td>
+                                        <th colspan="2">Manager comments</th>
+                                        <td colspan="2">add manager here</td>
+                                        </tr>
+                                        {%endfor%}
+
                                         <tr class="p">
                                             <td colspan="10" class="hiddenRow">
                                                 <div class="accordian-body collapse" id="collapse{{goals.id}}">
@@ -366,11 +377,11 @@
                                                             <a href="{% url 'GnC:Goals_ImageUpload' goals.id%}" title = "Upload Evidence"><i class="fa fa-upload" aria-hidden="true"></i></a>
                                                             {%endif%}
 
-                                                        </span> 
+                                                        </span>
                                                     </div>
 
                                                     <br><br>
-                                                    
+
                                                     <table class = "KPItable">
                                                         <thead>
                                                             <tr>
@@ -394,7 +405,7 @@
                                                                 <input id="number" type="range" min="0" max="100" onclick="getcube()"/>
                                                                 </form></td>
                                                                 <!--<td class="editable" data-id="{{kpi.id}}" data-type="progress">{{kpi.progress}}</td>-->
-                                                                
+
                                                                 {%if appraisal.overall_appraisal.status == 'Stage 1' and kpi.progress == 'Working' or appraisal.overall_appraisal.status == 'Stage 1B' and kpi.progress == 'Working' %}
                                                                 <td><a href="{% url 'GnC:Update_KPI_POST1' kpi.id%}" title = "Approve KPI"><i class="fa fa-check-circle" aria-hidden="true"></i></a></td>
                                                                 {%elif appraisal.overall_appraisal.status == 'Stage 1' and kpi.progress == 'Completed' or appraisal.overall_appraisal.status == 'Stage 1B' and kpi.progress == 'Completed' %}
@@ -416,8 +427,8 @@
                                                         </tbody>
                                                     </table>
                                                     <br>
-                                                </div> 
-                                            </td> 
+                                                </div>
+                                            </td>
                                         </tr>
                                         {%endfor%}
                                         {%endif%}
@@ -442,8 +453,8 @@
                         <br>
                     </div>
 
-                    
-                    
+
+
                     <!--<div class="tab-pane fade" id="competencies{{forloop.counter}}" role="tabpanel" aria-labelledby="nav-competencies-tab">-->
                     <div id="competencies{{forloop.counter}}" class="tabcontent{{forloop.counter}}" style ="display:none;">
                         <div class = "card card-table shadow-sm">
@@ -454,14 +465,14 @@
                             <div class = "card-body p-0">
                                 <table class = "table mb-0 pb-0">
                                     <thead class = "thead-light">
-                                        <tr> 
+                                        <tr>
                                             <th style = "width: 15%;">Department</th>
                                             <th style = "width: 25%;">Category</th>
                                             <th style = "width: 30%;">Core Values Competency</th>
                                             <th style = "width: 25%;">Description</th>
                                         </tr>
                                     </thead>
-                                    
+
                                     <tbody>
                                         {% if appraisal.overall_appraisal.departmental_competencies_set.count == 0 %}
                                         <td colspan="4">Request your manager/supervisor to add Departmental Core Values Competencies</td>
@@ -541,12 +552,12 @@
                         {%endif%}
                         <br>
                     </div>
-                    
-                    
+
+
 
                     <!--<div class="tab-pane fade" id="skills{{forloop.counter}}" role="tabpanel" aria-labelledby="nav-skills-tab">-->
                     <div id="skills{{forloop.counter}}" class="tabcontent{{forloop.counter}}" style ="display:none;">
-                        
+
                         <div class = "card card-table shadow-sm">
                             <div class = "card-header">
                                 <h5 class = "mb-0">{{request.user.profile.name}}'s Skills</h5>
@@ -555,7 +566,7 @@
                             <div class = "card-body p-0">
                                 <table class = "table mb-0 pb-0">
                                     <thead class = "thead-light">
-                                        <th style = "width: 25%;">Skill</th> 
+                                        <th style = "width: 25%;">Skill</th>
                                         <th style = "width: 50%;">Description</th>
                                         <th style = "width: 10%;">Weightage</th>
                                         <th colspan="3" style = "width: 15%;">Actions</th>
@@ -593,15 +604,15 @@
                         {%endif%}
                     </div>
 
-                    
+
 
                     <!--<div class="tab-pane fade" id="ratings{{forloop.counter}}" role="tabpanel" aria-labelledby="nav-ratings-tab">-->
                     <div id="self_rating{{forloop.counter}}" class="tabcontent{{forloop.counter}}" style ="display:none;">
                         <div class = "card card-table shadow-sm">
                             <div class = "card-header">
                                 <h5 class = "mb-0">Goals</h5>
-                            </div>  
-    
+                            </div>
+
                             <div class = "card-body p-0">
                                 <table class ="table fixed pb-0 mb-0">
                                     <thead class = "thead-light">
@@ -692,8 +703,8 @@
                                                 </tbody>
                                             </table>
                                             <br>
-                                        </div> 
-                                    </td> 
+                                        </div>
+                                    </td>
                                 </tr>
                                 {%endfor%}
                                 {%endif%}
@@ -760,7 +771,7 @@
                             </div>
                         </div>
                         <!--end of testing card table-->
-                        
+
                         <br><br>
 
                         <div class = "card card-table shadow-sm">
@@ -811,13 +822,13 @@
                                     </tr>
                                     {%endfor%}
                                     {%endif%}
-                                    
+
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                         <br>
-                        
+
                         {% if appraisal.completion != 'null' %}
                         <div class = "row justify-content-center m-0">
                             <div class = "col-4">
@@ -848,13 +859,13 @@
                         </div>
                         {%endif%}
                     </div>
-                    
+
                 </section>
                 {%endfor%}
                 {%endif%}
             </section>
-            
-            <section class='dashboardcontent' id="peer" style = "display: none;">    
+
+            <section class='dashboardcontent' id="peer" style = "display: none;">
                 <table class = "table table-condensed">
                     <thead class = "thead-light">
                         <th style = "width: 25%;">Appraisal Name</th>
@@ -891,7 +902,7 @@
                 </table>
 
             </section>
-        
+
 
             <section class="dashboardcontent" id="records" style  = "display: none;">
                 <table class = "table table-condensed">
@@ -922,10 +933,10 @@
                 </table>
             </section>
         </div>
-        <script type="text/javascript">  
-        function getcube(){  
-        var number=document.getElementById("number").value; 
-        var number2=document.getElementById("number2").value;  
+        <script type="text/javascript">
+        function getcube(){
+        var number=document.getElementById("number").value;
+        var number2=document.getElementById("number2").value;
         if (number == 100){
             document.getElementById("approve").innerHTML = "Paragraph changed0!";
             }
@@ -936,18 +947,18 @@
             document.getElementById("approve").innerHTML = "Paragraph changed2!";
         }
         alert(number2+number2)
-        }  
-        </script> 
+        }
+        </script>
 
         <!--jquery & bootstrap-->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>   
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
        <!--django bootstrap modals-->
        <script src="{% static 'assets/js/bootstrap.js' %}"></script>
        <script src="{% static 'assets/js/jquery.js' %}"></script>
        <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
-    
+
     {%endblock%}
 </body>

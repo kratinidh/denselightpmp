@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <!--Inform website of language of HTML-->
 <html lang="en">
-<!--Header--> 
+<!--Header-->
 <head>
     <!--HTML inheritance: overriding parent class title block(Django exclusive)-->
     <title>{%block title%}Appraisal Details{%endblock%}</title>
@@ -20,14 +20,14 @@
     <script src="js/custom.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
-    
+
+
     <!--font-->
     <link href="https://fonts.googleapis.com/css2?family=Hind:wght@600&display=swap" rel="stylesheet"> <!--hind-->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"> <!--open sans-->
-    
+
     <script>
-        /*tabs*/ 
+        /*tabs*/
         function openCity(evt, cityName, classOfTabContent, classOfTabLink) {
             var i, x, tablinks;
 
@@ -49,7 +49,7 @@
         $('.accordion-toggle').click(function(){
             $('.hiddenRow').hide();
             $(this).next('tr').find('.hiddenRow').show();
-        }); 
+        });
 
         /*tooltips*/
         $(document).ready(function(){
@@ -116,12 +116,12 @@
         <!--end of test-->
 
         <br>
-            {%if object.status == 'Employee'%} 
+            {%if object.status == 'Employee'%}
             <div class="alert alert-secondary" role="alert" style = "border-left: 3px solid grey">
                 Employee has not submitted <strong>Goals, Core Values Competencies and Skills</strong>.
             </div>
-            
-            {%elif object.status == 'Manager'%} 
+
+            {%elif object.status == 'Manager'%}
             <div class="alert alert-warning" role="alert" style = "border-left: 3px solid orange">
                 Goals, Core Values Competencies and Skills are <strong>pending approval</strong>.
             </div>
@@ -132,9 +132,9 @@
                 <a class = "btn btn-success btn-sm" href="{%url 'Appraisals:MtS1BE_Appraisal' object.id%}">Approve Appraisal&nbsp;<i class="fa fa-check-circle" aria-hidden="true" title="Approve"></i></a>
             </div>
 
-            {%else%} 
+            {%else%}
             <div class="alert alert-success" role="alert" style = "border-left: 3px solid green">
-                Goals, Core Values Competencies and Skills have been <strong>approved</strong>! 
+                Goals, Core Values Competencies and Skills have been <strong>approved</strong>!
             </div>
 
             <div class = "row justify-content-end m-0">
@@ -146,7 +146,7 @@
 
         <br>
 
-            
+
 
 
         <div class = "card card-table">
@@ -163,6 +163,7 @@
                             <th>Objective</th>
                             <th>Due</th>
                             <th>Progress</th>
+                            <th>Comments</th>
                         </tr>
                     </thead>
 
@@ -171,7 +172,7 @@
                         <tr>
                             <td colspan = "6">They do not have any Goals currently.</td>
                         </tr>
-                        {%else%} 
+                        {%else%}
 
                         {% for goals in object.goals_set.all %}
                         <tr>
@@ -180,8 +181,9 @@
                             <td><button id = "seeMore" data-toggle="collapse" data-target="#collapse{{goals.id}}" class="accordion-toggle" type="button"><i class="fa fa-chevron-down"  alt = "See More"></i></button></td>
                             <td>{{goals.description}}</td>
                             <td>{{goals.due}}</td>
-                            
-                            <td> 
+
+
+                            <td>
                                 {%if goals.get_kpi_percentage < 0 %}
                                 No KPIs
                                 {%elif goals.get_kpi_percentage <= 99 %}
@@ -193,15 +195,34 @@
                                     <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: {{goals.get_kpi_percentage}}%;" aria-valuenow="{{goals.get_kpi_filtered_completed.count}}" aria-valuemin="0" aria-valuemax="{{goals.kpi_set.count}}">{{goals.get_kpi_percentage}}%</div>
                                 </div>
                                 {%endif%}</td>
+                                <td><a href="{%url 'GnC:Create_User_Comments' goals.id %}">Add comment</a></td>
                         </tr>
+                        {%for comment_box in goals.comment_box_set.all%}
+                        <tr>
+                        {% if comment_box.created_by !=  request.user.profile%}
+                        <th colspan="2">Employee comments</th>
 
-                        
+                        <td >{{comment_box.comment}}</td>
+                        <!-- {% else %}
+                        <td colspan="2"></td> -->
+                        {%endif%}
+                        {% if comment_box.created_by ==  request.user.profile%}
+                        <th >Manager comments</th>
+
+                        <td colspan="2">{{comment_box.comment}}</td>
+                        <!-- {% else %}
+                        <td colspan="2"></td> -->
+                        </tr>
+                        {%endif%}
+                        {%endfor%}
+
+
                         <tr class="p">
                                 <td colspan="10" class="hiddenRow">
                                     <div class="accordian-body collapse" id="collapse{{goals.id}}">
                                         <br>
                                         <span style = "margin-right: 5%; float: right; font-size:14px">Tracking Source/Documents: <strong>{{goals.metrics_Used}}</strong></span><br>
-                                        
+
                                         <br>
                                         <table class = "KPItable">
                                             <thead>
@@ -231,8 +252,8 @@
                                             </tbody>
                                         </table>
                                         <br>
-                                    </div> 
-                                </td> 
+                                    </div>
+                                </td>
                             </tr>
                             {%endfor%}
                             {%endif%}
@@ -242,7 +263,7 @@
         </div>
 
 
-        <br><br> 
+        <br><br>
 
         <div class = "card card-table">
             <div class = "card-header border-0">
@@ -250,7 +271,7 @@
             </div>
 
             <div class = "card-body py-0">
-                <table class = "table fixed mb-0 pb-0">    
+                <table class = "table fixed mb-0 pb-0">
                     <thead>
                         <tr>
                             <th style = "width: 150px;">Category</th>
@@ -263,7 +284,7 @@
                         <tr>
                             <td colspan = "3">They do not have any Core Values Competencies currently.</td>
                         </tr>
-                        {%else%} 
+                        {%else%}
 
                         {% for competencies in object.competencies_set.all%}
                         <tr>
@@ -276,8 +297,8 @@
                     </tbody>
                 </table>
             </div>
-        </div>    
-            
+        </div>
+
         <br><br>
 
         <div class = "card card-table">
@@ -298,7 +319,7 @@
                         <tr>
                             <td colspan = "2">They do not have any Skills currently.</td>
                         </tr>
-                        {%else%} 
+                        {%else%}
 
                         {%for skills in object.skills_set.all%}
                         <tr>
@@ -316,7 +337,7 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     {%endblock%}
 
 </body>
