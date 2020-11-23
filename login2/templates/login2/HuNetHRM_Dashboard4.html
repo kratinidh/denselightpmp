@@ -366,10 +366,52 @@
                                         </tr>
                                         {%for comment_box in goals.comment_box_set.all%}
                                         <tr>
-                                        <th colspan="2">Employee comments</th>
-                                        <td colspan="2">{{comment_box.comment}}</td>
-                                        <th colspan="2">Manager comments</th>
-                                        <td colspan="2">add manager here</td>
+                                        <th colspan="2">
+                                          <p>Employee comments
+                                          </p>
+                                            <table>
+                                                <tr>
+                                                    <td><a href="{%url 'GnC:Create_User_Comments' goals.id %}"><i class="fa fa-plus-square-o" title = "Add Comments"></i> 
+                                                    </a>
+                                                    </td>
+                                                    <td width="10%">
+                                                    </td>
+                                                    <td>
+                                                        <a href="{%url 'GnC:Create_User_Comments' goals.id %}">
+                                                         <i class="fa fa-pencil-square-o" title = "Update comments"></i>                
+                                                        </a>
+                                                    </td>
+                                                    
+                                                </tr>
+                                            </table>
+                                      </th>
+                                        <td colspan="2">
+                                            <textarea id="w3review" name="w3review" rows="4" cols="30">{{comment_box.comment}}
+                                              </textarea>
+                                        </td>
+                                        <th colspan="2">
+                                            <p>Manager comments</p>
+                                             <table>
+                                                <tr>
+                                                    <td><a href="{%url 'GnC:Create_User_Comments' goals.id %}"><i class="fa fa-plus-square-o" title = "Add Comments"></i> 
+                                                    </a>
+                                                    </td>
+                                                    <td width="10%">
+                                                    </td>
+                                                    <td>
+                                                        <a href="{%url 'GnC:Create_User_Comments' goals.id %}">
+                                                         <i class="fa fa-pencil-square-o" title = "Update comments"></i>                
+                                                        </a>
+                                                    </td>
+                                                    
+                                                </tr>
+                                            </table>
+                                        </th>
+                                        <td colspan="2">
+                                            <textarea id="w3review" name="w3review" rows="4" cols="30">
+  
+                                              </textarea>
+                                        </td>
                                         </tr>
                                         {%endfor%}
                                         <tr class="p">
