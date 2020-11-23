@@ -203,15 +203,13 @@
                         <th colspan="2">Employee comments</th>
 
                         <td >{{comment_box.comment}}</td>
-                        <!-- {% else %}
-                        <td colspan="2"></td> -->
+
                         {%endif%}
                         {% if comment_box.created_by ==  request.user.profile%}
                         <th >Manager comments</th>
 
                         <td colspan="2">{{comment_box.comment}}</td>
-                        <!-- {% else %}
-                        <td colspan="2"></td> -->
+
                         </tr>
                         {%endif%}
                         {%endfor%}
