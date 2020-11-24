@@ -251,7 +251,7 @@
                         {% elif goals.comment_box_set.count == 1%}
                         {%for comment_box in goals.comment_box_set.all%}
                         <tr>
-                          <!-- <td>{{request.user.id}}   =   {{comment_box.created_by_id}}</td> -->
+                          
 
                         <th >
                             <p>Manager comments</p>
@@ -339,7 +339,7 @@
                       {%else%}
                         {%for comment_box in goals.comment_box_set.all%}
 
-                          <!-- <td>{{request.user.id}}   =   {{comment_box.created_by_id}}</td> -->
+                          
 
 
                           {% if comment_box.created_by ==  request.user.profile%}
