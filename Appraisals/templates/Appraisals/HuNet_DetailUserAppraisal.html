@@ -257,7 +257,7 @@
                             <p>Manager comments</p>
                             <table>
                               <tr>
-                                {% if comment_box.created_by_id ==  request.user.id%}
+                                {% if comment_box.created_by ==  request.user.profile%}
                                 <td><a ><i class="fa fa-plus-square-o" title = "Add Comments"></i>
                                 </a>
                                   </td>
@@ -322,7 +322,7 @@
                             </table>
 
                         </th>
-                        {% if comment_box.created_by_id !=  request.user.id%}
+                        {% if comment_box.created_by !=  request.user.profile%}
                         <td colspan="2">
                               <textarea id="w3review" name="w3review" rows="4" cols="30">{{comment_box.comment}}
 
@@ -342,7 +342,7 @@
                           <!-- <td>{{request.user.id}}   =   {{comment_box.created_by_id}}</td> -->
 
 
-                          {% if comment_box.created_by_id ==  request.user.id%}
+                          {% if comment_box.created_by ==  request.user.profile%}
                           <th >
                             <p>Manager comments</p>
                             <table>
@@ -368,7 +368,7 @@
                               </textarea>
                           </td>
 
-                          {% elif comment_box.created_by_id !=  request.user.id%}
+                          {% elif comment_box.created_by !=  request.user.profile%}
 
                         <th >
                           <p>Employee comments</p>
