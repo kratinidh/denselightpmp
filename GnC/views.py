@@ -150,7 +150,7 @@ def HR_GnC(request):
 class Create_Goals(BSModalCreateView): #class Create_Goals(CreateView):
     success_message = 'Success: Goal was created.'
     form_class = CreateGoalsForm
-    success_url = reverse_lazy('user_homepage')
+    success_url = reverse_lazy(' ')
     template_name = 'GnC/HuNet_CreateGoals.html'
 
     def clean(self, *args, **kwargs):
@@ -253,7 +253,7 @@ class Create_Goals_Comments(CreateView):
     success_url = reverse_lazy('user_homepage')
 
     def form_valid(self, form):
-        form.instance.created_by = self.request.user.profile
+        form.instance.created_by_id = self.request.user.profile
         id=self.kwargs.get("pk")
         form.instance.goal = Goals.objects.get(id=id)
         print(form.cleaned_data)
@@ -267,7 +267,7 @@ class Create_Competencies_Comments(CreateView):
     success_url = reverse_lazy('user_homepage')
 
     def form_valid(self, form):
-        form.instance.created_by = self.request.user.profile
+        form.instance.created_by_id = self.request.user.profile
         id = self.kwargs.get("pk")
         form.instance.competency = Competencies.objects.get(id = id)
         print(form.cleaned_data)
@@ -597,10 +597,11 @@ class Create_Comment(CreateView):
     def form_valid(self, form):
         id = self.kwargs.get("pk")
         form.instance.goal = Goals.objects.get(id=id)
-        form.instance.created_by = self.request.user.profile
+        print(self.request.user.id)
+        form.instance.created_by_id = self.request.user.id
         # form.instance.progress = 'Not Started'
         print(form.cleaned_data)
-        return super(Create_Comment, self).form_valid(form)
+        return super().form_valid(form)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
 class Update_Comment(UpdateView):
@@ -611,10 +612,43 @@ class Update_Comment(UpdateView):
 
     def form_valid(self, form):
         print(self.object)
-        if self.object.created_by == self.request.user.profile:
+        if self.object.created_by_id == self.request.user.id:
 
             print(form.cleaned_data)
 
             return super(Update_Comment, self).form_valid(form)
         messages.warning(self.request, _("u can not edit this"))
         return HttpResponseRedirect(reverse('user_homepage'))
+
+@method_decorator(login_required(login_url='login'), name='dispatch')
+@method_decorator(allowed_users(allowed_roles=['Employee', 'Manager', 'HR', 'HR manager']), name='dispatch')
+class Manager_Create_Comment(CreateView):
+    form_class = CreateCommentForm
+    success_url = reverse_lazy('user_homepage')
+    template_name = 'GnC/HuNet_CreateComment.html'
+
+    def form_valid(self, form):
+        id = self.kwargs.get("pk")
+        form.instance.goal = Goals.objects.get(id=id)
+        print(self.request.user.id)
+        form.instance.created_by_id = self.request.user.id
+        # form.instance.progress = 'Not Started'
+        print(form.cleaned_data)
+        return super().form_valid(form)
+
+@method_decorator(login_required(login_url='login'), name='dispatch')
+class Manager_Update_Comment(UpdateView):
+    model = Comment_Box
+    form_class = CreateCommentForm
+    template_name = 'GnC/HuNet_CreateComment.html'
+    success_url = reverse_lazy('user_homepage')
+
+    def form_valid(self, form):
+        print(self.object)
+        if self.object.created_by_id == self.request.user.id:
+
+            print(form.cleaned_data)
+
+            return super().form_valid(form)
+        messages.warning(self.request, _("u can not edit this"))
+        return HttpResponseRedirect(reverse('HuNet_DetailUserAppraisal.html'))

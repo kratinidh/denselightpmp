@@ -163,7 +163,7 @@
                             <th>Objective</th>
                             <th>Due</th>
                             <th>Progress</th>
-                            <th>Comments</th>
+
                         </tr>
                     </thead>
 
@@ -195,24 +195,215 @@
                                     <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: {{goals.get_kpi_percentage}}%;" aria-valuenow="{{goals.get_kpi_filtered_completed.count}}" aria-valuemin="0" aria-valuemax="{{goals.kpi_set.count}}">{{goals.get_kpi_percentage}}%</div>
                                 </div>
                                 {%endif%}</td>
-                                <td><a href="{%url 'GnC:Create_User_Comments' goals.id %}">Add comment</a></td>
+
                         </tr>
+                        {% if goals.comment_box_set.count == 0%}
+
+                        <!-- <td><a href="{%url 'GnC:Manager_Create_Comment' goals.id %}"><i class="fa fa-plus-square-o" title = "Add Comments"></i> -->
+                        <th>
+                          <p>Manager comments</p>
+                           <table>
+                              <tr>
+                                <td><a href="{%url 'GnC:Manager_Create_Comment' goals.id %}"><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                </a>
+                                  </td>
+                                  <td width="10%">
+                                </td>
+                                <td>
+                                  <a >
+                                         <i class="fa fa-pencil-square-o" title = "Update comments"></i>
+                                  </a>
+                                </td>
+
+                              </tr>
+                            </table>
+
+                        </th>
+                        <td colspan="2">
+                              <textarea id="w3review" name="w3review" rows="4" cols="30"></textarea>
+                        </td>
+                        <th>
+                          <p>Employee comments</p>
+                           <table>
+                              <tr>
+                                <td><a><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                </a>
+                                  </td>
+                                  <td width="10%">
+                                </td>
+                                <td>
+                                  <a >
+                                         <i class="fa fa-pencil-square-o" title = "Update comments"></i>
+                                  </a>
+                                </td>
+
+                              </tr>
+                            </table>
+
+                        </th>
+                        <td colspan="2">
+                              <textarea id="w3review" name="w3review" rows="4" cols="30"></textarea>
+                        </td>
+
+
+
+
+                        {% elif goals.comment_box_set.count == 1%}
                         {%for comment_box in goals.comment_box_set.all%}
                         <tr>
-                        {% if comment_box.created_by !=  request.user.profile%}
-                        <th colspan="2">Employee comments</th>
+                          <!-- <td>{{request.user.id}}   =   {{comment_box.created_by_id}}</td> -->
 
-                        <td >{{comment_box.comment}}</td>
+                        <th >
+                            <p>Manager comments</p>
+                            <table>
+                              <tr>
+                                {% if comment_box.created_by_id ==  request.user.id%}
+                                <td><a ><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                </a>
+                                  </td>
+                                  <td width="10%">
+                                </td>
 
-                        {%endif%}
-                        {% if comment_box.created_by ==  request.user.profile%}
-                        <th >Manager comments</th>
+                                <td>
+                                  <a href="{%url 'GnC:Manager_Update_Comment' comment_box.id %}">
+                                         <i class="fa fa-pencil-square-o" title = "Update comments"></i>
+                                  </a>
+                                </td>
 
-                        <td colspan="2">{{comment_box.comment}}</td>
+                              </tr>
+                            </table>
+                          </th>
+                        <td colspan="2">
+                              <textarea id="w3review" name="w3review" rows="4" cols="30">{{comment_box.comment}}
+                              </textarea>
+                          </td>
+
+                          {%else%}
+                          <td><a href="{%url 'GnC:Manager_Create_Comment' goals.id %}"><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                          </a>
+                            </td>
+                            <td width="10%">
+                          </td>
+
+                          <td>
+                            <a >
+                                   <i class="fa fa-pencil-square-o" title = "Update comments"></i>
+                            </a>
+                          </td>
 
                         </tr>
+                      </table>
+
+                  </th>
+                  <td colspan="2">
+                        <textarea id="w3review" name="w3review" rows="4" cols="30">
+
+                        </textarea>
+                  </td>
+                  {%endif%}
+
+
+                        <th >
+                          <p>Employee comments</p>
+                           <table>
+                              <tr>
+                                <td><a><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                </a>
+                                  </td>
+                                  <td width="10%">
+                                </td>
+                                <td>
+                                  <a >
+                                         <i class="fa fa-pencil-square-o" title = "Update comments"></i>
+                                  </a>
+                                </td>
+
+                              </tr>
+                            </table>
+
+                        </th>
+                        {% if comment_box.created_by_id !=  request.user.id%}
+                        <td colspan="2">
+                              <textarea id="w3review" name="w3review" rows="4" cols="30">{{comment_box.comment}}
+
+                              </textarea>
+                        </td>
+                        {%else%}
+                        <td colspan="2">
+                              <textarea id="w3review" name="w3review" rows="4" cols="30">
+
+                              </textarea>
+                        </td>
                         {%endif%}
                         {%endfor%}
+                      {%else%}
+                        {%for comment_box in goals.comment_box_set.all%}
+
+                          <!-- <td>{{request.user.id}}   =   {{comment_box.created_by_id}}</td> -->
+
+
+                          {% if comment_box.created_by_id ==  request.user.id%}
+                          <th >
+                            <p>Manager comments</p>
+                            <table>
+                              <tr>
+
+                                <td><a ><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                </a>
+                                  </td>
+                                  <td width="10%">
+                                </td>
+
+                                <td>
+                                  <a href="{%url 'GnC:Manager_Update_Comment' comment_box.id %}">
+                                         <i class="fa fa-pencil-square-o" title = "Update comments"></i>
+                                  </a>
+                                </td>
+
+                              </tr>
+                            </table>
+                          </th>
+                        <td colspan="2">
+                              <textarea id="w3review" name="w3review" rows="4" cols="30">{{comment_box.comment}}
+                              </textarea>
+                          </td>
+
+                          {% elif comment_box.created_by_id !=  request.user.id%}
+
+                        <th >
+                          <p>Employee comments</p>
+                           <table>
+                              <tr>
+                                <td><a><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                </a>
+                                  </td>
+                                  <td width="10%">
+                                </td>
+                                <td>
+                                  <a >
+                                         <i class="fa fa-pencil-square-o" title = "Update comments"></i>
+                                  </a>
+                                </td>
+
+                              </tr>
+                            </table>
+
+                        </th>
+
+                        <td colspan="2">
+                              <textarea id="w3review" name="w3review" rows="4" cols="30">{{comment_box.comment}}
+
+                              </textarea>
+                        </td>
+
+                        {%endif%}
+                        {%endfor%}
+                        </td>
+                        </tr>
+
+                        {%endif%}
+
+
 
 
                         <tr class="p">

@@ -11,14 +11,3 @@ class UserCommentSerializer(serializers.ModelSerializer):
                 'read_only':True
             }
         }
-
-class ManagerCommentSerializer(serializers.ModelSerializer):
-    """"""
-    class Meta:
-        model = models.Comment_box
-        fields = ('id','user_profile','manager_comments','created_on')
-        extra_kwargs = {
-            'user_profile': {
-                'read_only':True
-            }
-        }

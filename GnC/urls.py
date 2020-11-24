@@ -47,4 +47,6 @@ urlpatterns = [
 
     path('allusers/<int:pk>/Create_Comment/', views.Create_Comment.as_view(), name = "Create_User_Comments"),
     path('allusers/<int:pk>/Update_Comment/', views.Update_Comment.as_view(), name ='Update_Comment'),
+    path('allusers/<int:pk>/Manager_Create_Comment/', views.Manager_Create_Comment.as_view(), name ='Manager_Create_Comment'),
+    path('allusers/<int:pk>/Manager_Update_Comment/', views.Manager_Update_Comment.as_view(), name ='Manager_Update_Comment'),
 ]
