@@ -204,7 +204,7 @@
                           <p>Manager comments</p>
                            <table>
                               <tr>
-                                <td><a href="{%url 'GnC:Manager_Create_Comment' goals.id %}"><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                <td><a href="{%url 'GnC:Create_Comment' goals.id %}"><i class="fa fa-plus-square-o" title = "Add Comments"></i>
                                 </a>
                                   </td>
                                   <td width="10%">
@@ -265,7 +265,7 @@
                                 </td>
 
                                 <td>
-                                  <a href="{%url 'GnC:Manager_Update_Comment' comment_box.id %}">
+                                  <a href="{%url 'GnC:Update_Comment' comment_box.id %}">
                                          <i class="fa fa-pencil-square-o" title = "Update comments"></i>
                                   </a>
                                 </td>
@@ -279,7 +279,7 @@
                           </td>
 
                           {%else%}
-                          <td><a href="{%url 'GnC:Manager_Create_Comment' goals.id %}"><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                          <td><a href="{%url 'GnC:Create_User_Comment' goals.id %}"><i class="fa fa-plus-square-o" title = "Add Comments"></i>
                           </a>
                             </td>
                             <td width="10%">
@@ -355,7 +355,7 @@
                                 </td>
 
                                 <td>
-                                  <a href="{%url 'GnC:Manager_Update_Comment' comment_box.id %}">
+                                  <a href="{%url 'GnC:Update_Comment' comment_box.id %}">
                                          <i class="fa fa-pencil-square-o" title = "Update comments"></i>
                                   </a>
                                 </td>
