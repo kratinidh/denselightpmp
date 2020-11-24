@@ -412,7 +412,7 @@
                                             <p>Employee comments</p>
                                             <table>
                                             	<tr>
-                                                {% if comment_box.created_by_id ==  request.user.id%}
+                                                {% if comment_box.created_by ==  request.user.profile%}
                                             		<td><a ><i class="fa fa-plus-square-o" title = "Add Comments"></i>
                                             		</a>
                                             	    </td>
@@ -477,7 +477,7 @@
                                             </table>
 
                                         </th>
-                                        {% if comment_box.created_by_id !=  request.user.id%}
+                                        {% if comment_box.created_by !=  request.user.profile%}
                                         <td colspan="2">
                                               <textarea id="w3review" name="w3review" rows="4" cols="30">{{comment_box.comment}}
 
@@ -495,7 +495,7 @@
                                         {% elif goals.comment_box_set.count == 2%}
                                         {%for comment_box in goals.comment_box_set.all%}
 
-                                          {% if comment_box.created_by_id ==  request.user.id%}
+                                          {% if comment_box.created_by ==  request.user.profile%}
                                           <th >
                                             <p>Employee comments</p>
                                             <table>
@@ -523,7 +523,7 @@
                                           {%endif%}
                                           {%endfor%}
                                           {%for comment_box in goals.comment_box_set.all%}
-                                          {% if comment_box.created_by_id !=  request.user.id%}
+                                          {% if comment_box.created_by !=  request.user.profile%}
 
                                         <th >
                                         	<p>Manager comments</p>
