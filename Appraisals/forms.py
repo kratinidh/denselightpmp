@@ -523,6 +523,7 @@ class MidAppGoalsForm_M(forms.ModelForm):
             'id'
         )
         labels = {
+            "id": "Goal id",
             "summary": "Goal Title",
             "goal_category": "Goal Category",
             "description": "Objectives",
@@ -532,6 +533,9 @@ class MidAppGoalsForm_M(forms.ModelForm):
         }
 
         widgets = {
+            'id': forms.NumberInput(attrs={
+                'readonly': 'readonly'}
+            ),
             'summary': forms.TextInput(attrs={
                 'class': 'form-control'
             }),
