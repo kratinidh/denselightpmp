@@ -449,23 +449,26 @@ class CreateRatingScaleForm(forms.ModelForm):
 class MidAppGoalsForm(forms.ModelForm):
     tracking_status = forms.ChoiceField(choices=(('On Track', 'On Track'),
     ('Not On Track', 'Not On Track')))
-    
+
     def __init__(self, *args, **kwargs):
        super(MidAppGoalsForm, self).__init__(*args, **kwargs)
+       # self.fields['id'].widget.attrs['readonly'] = True
        self.fields['summary'].widget.attrs['readonly'] = True
        self.fields['goal_category'].widget.attrs['readonly'] = True
        self.fields['description'].widget.attrs['readonly'] = True
     class Meta:
         model = Goals
         fields = (
+            'id',
             'summary',
             'goal_category',
             'description',
             'tracking_status',
             'MID_user_comments',
-            'id'
+
         )
         labels = {
+            "id": "Goal id",
             "summary": "Goal Title",
             "goal_category": "Goal Category",
             "description": "Objectives",
@@ -474,11 +477,14 @@ class MidAppGoalsForm(forms.ModelForm):
 
         }
         widgets = {
+            'id': forms.NumberInput(attrs={
+                'readonly': 'readonly'}
+            ),
             'summary': forms.TextInput(attrs={
                 'class': 'form-control'
             }),
             'goal_category': forms.Select(attrs={
-                'class': 'form-control' 
+                'class': 'form-control'
             }),
             'description': forms.Textarea(attrs={
                 'class': 'form-control',
