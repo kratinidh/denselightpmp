@@ -1,5 +1,5 @@
-from .forms import GoalsForm, DepartmentGoalsForm, CompetenciesForm, CreateGoalsForm, CreateCompetenciesForm, CreateKPIsForm, UpdateKPIsForm ,CreateDepartmentalGoalsForm, CreateDepartmentalCompetenciesForm, UpdatePOSTKPIsForm, UploadGoalsEvidence, CreateCommentForm
-from .models import Goals, Competencies, goal_category, Departmental_Goals, KPI, competency_category, goal_comment, competency_comment, Departmental_Competencies, Comment_Box
+from .forms import GoalsForm, DepartmentGoalsForm, CompetenciesForm, CreateGoalsForm, CreateCompetenciesForm, CreateKPIsForm, UpdateKPIsForm ,CreateDepartmentalGoalsForm, CreateDepartmentalCompetenciesForm, UpdatePOSTKPIsForm, UploadGoalsEvidence, CreateCommentForm, CreateMidYrCommentForm
+from .models import Goals, Competencies, goal_category, Departmental_Goals, KPI, competency_category, goal_comment, competency_comment, Departmental_Competencies, Comment_Box, Mid_Yr_Comment_Box
 from .decorators import allowed_users, redirect_users
 from Profile.models import Profile, Departments
 from Appraisals.models import Appraisal, User_Appraisal_List, Overall_Appraisal
@@ -618,3 +618,40 @@ class Update_Comment(UpdateView):
             return super(Update_Comment, self).form_valid(form)
         messages.warning(self.request, _("u can not edit this"))
         return HttpResponseRedirect(reverse('user_homepage'))
+    
+@method_decorator(login_required(login_url='login'), name='dispatch')
+@method_decorator(allowed_users(allowed_roles=['Employee', 'Manager', 'HR', 'HR manager']), name='dispatch')
+class Mid_Yr_Create_Comment(CreateView):
+    form_class = CreateMidYrCommentForm
+    success_url = reverse_lazy('user_homepage')
+    template_name = 'GnC/HuNet_CreateComment.html'
+
+
+    def form_valid(self, form):
+        id = self.kwargs.get("pk")
+        form.instance.goal = Goals.objects.get(id=id)
+        # print(self.request.user.id)
+        form.instance.created_by = self.request.user.profile
+        form.instance.user = self.request.user.id
+        # form.instance.appraisal = User_Appraisal_List.objects.get(id=id)
+        # form.instance.progress = 'Not Started'
+        print(form.cleaned_data)
+        return super(Mid_Yr_Create_Comment, self).form_valid(form)
+
+@method_decorator(login_required(login_url='login'), name='dispatch')
+class Mid_Yr_Update_Comment(UpdateView):
+    model = Mid_Yr_Comment_Box
+    form_class = CreateMidYrCommentForm
+    template_name = 'GnC/HuNet_CreateComment.html'
+    success_url = reverse_lazy('user_homepage')
+
+    def form_valid(self, form):
+        print(self.object)
+        if self.object.created_by == self.request.user.profile:
+
+            print(form.cleaned_data)
+
+            return super(Mid_Yr_Update_Comment, self).form_valid(form)
+        messages.warning(self.request, _("u can not edit this"))
+        return HttpResponseRedirect(reverse('user_homepage'))
+
