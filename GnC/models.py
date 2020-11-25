@@ -182,7 +182,7 @@ class Comment_Box(models.Model):
     goal = models.ForeignKey('Goals', blank = False, null = False, on_delete = models.CASCADE)
     comment = models.TextField(blank = False, null = True)
     created_on = models.DateTimeField(auto_now_add=True)
-    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, blank = False, null = True, on_delete = models.CASCADE)
+    created_by = models.ForeignKey(Profile , blank = False, null = True, on_delete = models.CASCADE)
 
     def __str__(self):
         return self.comment
