@@ -197,6 +197,8 @@
                                 {%endif%}</td>
 
                         </tr>
+                        
+                        {% if object.status != null%}
                         {% if goals.comment_box_set.count == 0%}
 
                         
@@ -264,11 +266,19 @@
                                   <td width="10%">
                                 </td>
 
+                               {%if object.status == 'Manager'%}
                                 <td>
                                   <a href="{%url 'GnC:Update_Comment' comment_box.id %}">
                                          <i class="fa fa-pencil-square-o" title = "Update comments"></i>
                                   </a>
                                 </td>
+                                  {%else%}
+                                  <td>
+                                    <a>
+                                           <i class="fa fa-pencil-square-o" title = "Update comments"></i>
+                                    </a>
+                                  </td>
+                                  {%endif%}
 
                               </tr>
                             </table>
@@ -354,11 +364,19 @@
                                   <td width="10%">
                                 </td>
 
+                               {%if object.status == 'Manager'%}
                                 <td>
                                   <a href="{%url 'GnC:Update_Comment' comment_box.id %}">
                                          <i class="fa fa-pencil-square-o" title = "Update comments"></i>
                                   </a>
                                 </td>
+                                  {%else%}
+                                  <td>
+                                    <a>
+                                           <i class="fa fa-pencil-square-o" title = "Update comments"></i>
+                                    </a>
+                                  </td>
+                                  {%endif%}
 
                               </tr>
                             </table>
@@ -403,7 +421,213 @@
 
                         {%endif%}
 
+                        {%endif%}
 
+                        {%if object.status == 'S1BReview'%}
+
+                        {% if goals.mid_yr_comment_box_set.count == 0%}
+
+
+                        <th>
+                          <p>Mid year : Your comments</p>
+                           <table>
+                              <tr>
+                                <td><a href="{%url 'GnC:Mid_Yr_Create_User_Comments' goals.id %}"><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                </a>
+                                  </td>
+                                  <td width="10%">
+                                </td>
+                                <td>
+                                  <a >
+                                         <i class="fa fa-pencil-square-o" title = "Update comments"></i>
+                                  </a>
+                                </td>
+
+                              </tr>
+                            </table>
+
+                        </th>
+                        <td colspan="2">
+                              <textarea id="w3review" name="w3review" rows="4" cols="30"></textarea>
+                        </td>
+                        <th>
+                          <p>Mid Year : Employee comments</p>
+                           <table>
+                              <tr>
+                                <td><a><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                </a>
+                                  </td>
+                                  <td width="10%">
+                                </td>
+                                <td>
+                                  <a >
+                                         <i class="fa fa-pencil-square-o" title = "Update comments"></i>
+                                  </a>
+                                </td>
+
+                              </tr>
+                            </table>
+
+                        </th>
+                        <td colspan="2">
+                              <textarea id="w3review" name="w3review" rows="4" cols="30"></textarea>
+                        </td>
+
+                        {% elif goals.mid_yr_comment_box_set.count == 1%}
+                        {%for mid_yr_comment_box in goals.mid_yr_comment_box_set.all%}
+
+                        <tr>
+
+                        <th >
+                            <p>Mid Year : Your comments</p>
+                            <table>
+                              <tr>
+                                {% if mid_yr_comment_box.created_by ==  request.user.profile%}
+                                <td><a ><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                </a>
+                                  </td>
+                                  <td width="10%">
+                                </td>
+
+                                <td>
+                                  <a href="{%url 'GnC:Mid_Yr_Update_Comment' mid_yr_comment_box.id %}">
+                                         <i class="fa fa-pencil-square-o" title = "Update comments"></i>
+                                  </a>
+                                </td>
+
+                              </tr>
+                            </table>
+                          </th>
+                        <td colspan="2">
+                              <textarea id="w3review" name="w3review" rows="4" cols="30">{{mid_yr_comment_box.comment}}
+                              </textarea>
+                          </td>
+
+                          {%else%}
+                          <td><a href="{%url 'GnC:Mid_Yr_Create_User_Comments' goals.id %}"><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                          </a>
+                            </td>
+                            <td width="10%">
+                          </td>
+
+                          <td>
+                            <a >
+                                   <i class="fa fa-pencil-square-o" title = "Update comments"></i>
+                            </a>
+                          </td>
+
+                        </tr>
+                      </table>
+
+                  </th>
+                  <td colspan="2">
+                        <textarea id="w3review" name="w3review" rows="4" cols="30">
+
+                        </textarea>
+                  </td>
+                  {%endif%}
+
+
+                        <th >
+                          <p>Mid year : Employee comments</p>
+                           <table>
+                              <tr>
+                                <td><a><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                </a>
+                                  </td>
+                                  <td width="10%">
+                                </td>
+                                <td>
+                                  <a >
+                                         <i class="fa fa-pencil-square-o" title = "Update comments"></i>
+                                  </a>
+                                </td>
+
+                              </tr>
+                            </table>
+
+                        </th>
+                        {% if mid_yr_comment_box.created_by !=  request.user.profile%}
+                        <td colspan="2">
+                              <textarea id="w3review" name="w3review" rows="4" cols="30">{{mid_yr_comment_box.comment}}
+
+                              </textarea>
+                        </td>
+                        {%else%}
+                        <td colspan="2">
+                              <textarea id="w3review" name="w3review" rows="4" cols="30">
+
+                              </textarea>
+                        </td>
+                        {%endif%}
+                        {%endfor%}
+
+                        {% elif goals.mid_yr_comment_box_set.count == 2%}
+                        {%for mid_yr_comment_box in goals.mid_yr_comment_box_set.all%}
+
+                          {% if mid_yr_comment_box.created_by ==  request.user.profile%}
+                          <th >
+                            <p>Mid year : Your comments</p>
+                            <table>
+                              <tr>
+
+                                <td><a ><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                </a>
+                                  </td>
+                                  <td width="10%">
+                                </td>
+
+                                <td>
+                                  <a href="{%url 'GnC:Mid_Yr_Update_Comment' mid_yr_comment_box.id %}">
+                                         <i class="fa fa-pencil-square-o" title = "Update comments"></i>
+                                  </a>
+                                </td>
+
+                              </tr>
+                            </table>
+                          </th>
+                        <td colspan="2">
+                              <textarea id="w3review" name="w3review" rows="4" cols="30">{{mid_yr_comment_box.comment}}
+                              </textarea>
+                          </td>
+                          {%endif%}
+                          {%endfor%}
+                          {%for mid_yr_comment_box in goals.mid_yr_comment_box_set.all%}
+                          {% if mid_yr_comment_box.created_by !=  request.user.profile%}
+
+                        <th >
+                          <p>Mid year : Employee comments</p>
+                           <table>
+                              <tr>
+                                <td><a><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                </a>
+                                  </td>
+                                  <td width="10%">
+                                </td>
+                                <td>
+                                  <a >
+                                         <i class="fa fa-pencil-square-o" title = "Update comments"></i>
+                                  </a>
+                                </td>
+
+                              </tr>
+                            </table>
+
+                        </th>
+
+                        <td colspan="2">
+                              <textarea id="w3review" name="w3review" rows="4" cols="30">{{mid_yr_comment_box.comment}}
+
+                              </textarea>
+                        </td>
+
+                        {%endif%}
+                        {%endfor%}
+                        </td>
+                        </tr>
+
+                        {%endif%}
+                        {%endif%}
 
 
                         <tr class="p">
