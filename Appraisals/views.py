@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from Profile.models import Profile, Departments
 from .models import Appraisal_Category, Overall_Appraisal, Rating_Scale, User_Appraisal_List, Appraisal, peerAppraisal, peerAppraisalQuestion
-from GnC.models import Goals, Competencies
+from GnC.models import Goals, Competencies, Comment_Box
 from Trainings.models import Skills, Career_Discussion
 #from .forms import CreateAppraisalForm, GoalsFormset, CompetenciesFormset
 from .decorators import unauthenticated_user, allowed_users, redirect_users
@@ -510,55 +510,72 @@ class S2MtAppR_User_Appraisal_List(UpdateView):
 def UpdateMidAppraisalG(request, *args, **kwargs):
     id = kwargs.get('pk')
     selfappraisal = get_object_or_404(User_Appraisal_List, id=id)
+    # user_name = request.user.id
+    # user_name = request.user.profile
 
     GoalsFormset=modelformset_factory(Goals, form = MidAppGoalsForm, extra = 0)
     queryset1=Goals.objects.filter(appraisal = selfappraisal, employee = selfappraisal.employee)
+
+    goal_ids = [goal.id for goal in queryset1]
+    goal_comments = Comment_Box.objects.filter(goal__in = goal_ids)
+
+
 
     if request.method == 'POST' and 'send' in request.POST:
         formset = GoalsFormset(request.POST or None, queryset = queryset1)
         if formset.is_valid():
             goals = formset.save(commit=False)
             for goal in goals:
-                goal.save()  
-            
-            return HttpResponseRedirect(reverse('user_homepage')) 
+                goal.save()
+
+            return HttpResponseRedirect(reverse('user_homepage'))
 
     else:
         formset = GoalsFormset(queryset = queryset1)
 
     context ={
+        "goal_comments": goal_comments,
         "goals_formset": formset,
         "employee_appraisal": selfappraisal
     }
-    return render(request, 'Appraisals/MidUpdateG.html', context)
+    return render(request,'Appraisals/MidUpdateG.html', context)
 
 @login_required(login_url='login')
 def UpdateMidAppraisalG_M(request, *args, **kwargs):
     id = kwargs.get('pk')
     selfappraisal = get_object_or_404(User_Appraisal_List, id=id)
+    # user_name = request.user.id
+    # user_name = request.user.profile
+
 
     GoalsFormset=modelformset_factory(Goals, form = MidAppGoalsForm_M, extra = 0)
     queryset1=Goals.objects.filter(appraisal = selfappraisal, employee = selfappraisal.employee)
+
+    goal_ids = [goal.id for goal in queryset1]
+    goal_comments = Comment_Box.objects.filter(goal__in = goal_ids)
+
 
     if request.method == 'POST' and 'send' in request.POST:
         formset = GoalsFormset(request.POST or None, queryset = queryset1)
         if formset.is_valid():
             goals = formset.save(commit=False)
             for goal in goals:
-                goal.save()  
-            
+                goal.save()
+
             selfappraisal.mid_year_completion = 'Completed'
             selfappraisal.save(update_fields=['mid_year_completion'])
-            return HttpResponseRedirect(reverse('user_homepage')) 
+            return HttpResponseRedirect(reverse('user_homepage'))
 
     else:
         formset = GoalsFormset(queryset = queryset1)
 
     context ={
+        "goal_comments": goal_comments,
         "goals_formset": formset,
         "employee_appraisal": selfappraisal
     }
     return render(request, 'Appraisals/MidUpdateG.html', context)
+
 
 
 @login_required(login_url='login')
