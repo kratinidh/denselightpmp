@@ -49,4 +49,7 @@ urlpatterns = [
     path('allusers/<int:pk>/Update_Comment/', views.Update_Comment.as_view(), name ='Update_Comment'),
 #     path('allusers/<int:pk>/Manager_Create_Comment/', views.Manager_Create_Comment.as_view(), name ='Manager_Create_Comment'),
 #     path('allusers/<int:pk>/Manager_Update_Comment/', views.Manager_Update_Comment.as_view(), name ='Manager_Update_Comment'),
+    path('allusers/<int:pk>/Mid_Yr_Create_Comment/', views.Mid_Yr_Create_Comment.as_view(), name = "Mid_Yr_Create_User_Comments"),
+    path('allusers/<int:pk>/Mid_Yr_Update_Comment/', views.Mid_Yr_Update_Comment.as_view(), name ='Mid_Yr_Update_Comment'),
+
 ]
