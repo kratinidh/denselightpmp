@@ -385,7 +385,7 @@
                                         {% if appraisal.overall_appraisal.status == 'Stage 1'% or if appraisal.overall_appraisal.status == 'Stage 1B'%}
                                         {% if goals.comment_box_set.count == 0%}
 
-                                        <!-- <td><a href="{%url 'GnC:Create_User_Comments' goals.id %}"><i class="fa fa-plus-square-o" title = "Add Comments"></i> -->
+                                       
                                         <th>
                                           <p>Employee comments</p>
                                         	 <table>
@@ -450,11 +450,19 @@
                                             	    <td width="10%">
                                             		</td>
 
-                                            		<td>
+                                            		<{if appraisal.overall_appraisal.status == 'Stage 1'%}
+                                                <td>
                                             			<a href="{%url 'GnC:Update_Comment' comment_box.id %}">
                                                          <i class="fa fa-pencil-square-o" title = "Update comments"></i>
                                             			</a>
                                             		</td>
+                                                  {%else%}
+                                                  <td>
+                                              			<a>
+                                                           <i class="fa fa-pencil-square-o" title = "Update comments"></i>
+                                              			</a>
+                                              		</td>
+                                                  {%endif%}
 
                                             	</tr>
                                             </table>
@@ -538,11 +546,19 @@
                                             	    <td width="10%">
                                             		</td>
 
-                                            		<td>
+                                            		{if appraisal.overall_appraisal.status == 'Stage 1'%}
+                                                <td>
                                             			<a href="{%url 'GnC:Update_Comment' comment_box.id %}">
                                                          <i class="fa fa-pencil-square-o" title = "Update comments"></i>
                                             			</a>
                                             		</td>
+                                                  {%else%}
+                                                  <td>
+                                              			<a>
+                                                           <i class="fa fa-pencil-square-o" title = "Update comments"></i>
+                                              			</a>
+                                              		</td>
+                                                  {%endif%}
 
                                             	</tr>
                                             </table>
