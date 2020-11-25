@@ -418,11 +418,19 @@
                                             	    <td width="10%">
                                             		</td>
 
-                                            		<td>
+                                            		{if appraisal.overall_appraisal.status == 'Stage 1'%}
+                                                <td>
                                             			<a href="{%url 'GnC:Update_Comment' comment_box.id %}">
                                                          <i class="fa fa-pencil-square-o" title = "Update comments"></i>
                                             			</a>
                                             		</td>
+                                                  {%else%}
+                                                  <td>
+                                              			<a>
+                                                           <i class="fa fa-pencil-square-o" title = "Update comments"></i>
+                                              			</a>
+                                              		</td>
+                                                  {%endif%}
 
                                             	</tr>
                                             </table>
@@ -506,11 +514,19 @@
                                             	    <td width="10%">
                                             		</td>
 
-                                            		<td>
+                                            		{if appraisal.overall_appraisal.status == 'Stage 1'%}
+                                                <td>
                                             			<a href="{%url 'GnC:Update_Comment' comment_box.id %}">
                                                          <i class="fa fa-pencil-square-o" title = "Update comments"></i>
                                             			</a>
                                             		</td>
+                                                  {%else%}
+                                                  <td>
+                                              			<a>
+                                                           <i class="fa fa-pencil-square-o" title = "Update comments"></i>
+                                              			</a>
+                                              		</td>
+                                                  {%endif%}
 
                                             	</tr>
                                             </table>
