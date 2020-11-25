@@ -1,6 +1,6 @@
 from django.forms import Textarea, DateTimeField, DateField
 from django import forms
-from .models import Goals, Departmental_Goals, Competencies, KPI, Departmental_Competencies, Comment_Box
+from .models import Goals, Departmental_Goals, Competencies, KPI, Departmental_Competencies, Comment_Box, Mid_Yr_Comment_Box
 from bootstrap_modal_forms.forms import BSModalModelForm
 
 class CreateGoalsForm(forms.ModelForm): #class CreateGoalsForm(forms.ModelForm):
@@ -329,6 +329,23 @@ class CreateCommentForm(forms.ModelForm):
 
     class Meta:
         model = Comment_Box
+        fields=['comment']
+        labels = {
+            'comment': 'Add comment',
+        }
+        widgets = {
+            'comment': forms.Textarea(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Enter your comment',
+                    'style': 'max-height:500px;'
+            }),
+            }
+
+class CreateMidYrCommentForm(forms.ModelForm):
+
+    class Meta:
+        model = Mid_Yr_Comment_Box
         fields=['comment']
         labels = {
             'comment': 'Add comment',
