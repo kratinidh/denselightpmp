@@ -1,3 +1,39 @@
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@kratinidh 
+Learn Git and GitHub without any code!
+Using the Hello World guide, you’ll start a branch, write comments, and open a pull request.
+
+
+kratinidh
+/
+denselightpmp
+1
+00
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+denselightpmp/Appraisals/templates/Appraisals/HuNet_DetailUserAppraisal.html
+@VikrantKumar121
+VikrantKumar121 Update HuNet_DetailUserAppraisal.html
+Latest commit 9e95823 in 1 hour
+ History
+ 3 contributors
+@VikrantKumar121@kabirroy7275@kratinidh
+756 lines (620 sloc)  32.2 KB
+  
 <!--Inherit HTML from parent class 'utiltiypage'-->
 {%extends 'homepage.html'%}
 
@@ -203,7 +239,7 @@
 
                         
                         <th>
-                          <p>Manager comments</p>
+                          <p>Goal Settings:Manager comments</p>
                            <table>
                               <tr>
                                 <td><a href="{%url 'GnC:Create_User_Comments' goals.id %}"><i class="fa fa-plus-square-o" title = "Add Comments"></i>
@@ -225,7 +261,7 @@
                               <textarea id="w3review" name="w3review" rows="4" cols="30"></textarea>
                         </td>
                         <th>
-                          <p>Employee comments</p>
+                          <p>Goal Settings:Employee comments</p>
                            <table>
                               <tr>
                                 <td><a><i class="fa fa-plus-square-o" title = "Add Comments"></i>
@@ -256,7 +292,7 @@
                           
 
                         <th >
-                            <p>Manager comments</p>
+                            <p>Goal Settings:Manager comments</p>
                             <table>
                               <tr>
                                 {% if comment_box.created_by ==  request.user.profile%}
@@ -314,7 +350,7 @@
 
 
                         <th >
-                          <p>Employee comments</p>
+                          <p>Goal Settings:Employee comments</p>
                            <table>
                               <tr>
                                 <td><a><i class="fa fa-plus-square-o" title = "Add Comments"></i>
@@ -354,7 +390,7 @@
 
                           {% if comment_box.created_by ==  request.user.profile%}
                           <th >
-                            <p>Manager comments</p>
+                            <p>Goal Settings:Manager comments</p>
                             <table>
                               <tr>
 
@@ -389,7 +425,7 @@
                           {% elif comment_box.created_by !=  request.user.profile%}
 
                         <th >
-                          <p>Employee comments</p>
+                          <p>Goal Settings:Employee comments</p>
                            <table>
                               <tr>
                                 <td><a><i class="fa fa-plus-square-o" title = "Add Comments"></i>
@@ -429,7 +465,7 @@
 
 
                         <th>
-                          <p>Mid year : Your comments</p>
+                          <p>Mid year : Manager comments</p>
                            <table>
                               <tr>
                                 <td><a href="{%url 'GnC:Mid_Yr_Create_User_Comments' goals.id %}"><i class="fa fa-plus-square-o" title = "Add Comments"></i>
@@ -479,7 +515,7 @@
                         <tr>
 
                         <th >
-                            <p>Mid Year : Your comments</p>
+                            <p>Mid Year : Manager comments</p>
                             <table>
                               <tr>
                                 {% if mid_yr_comment_box.created_by ==  request.user.profile%}
@@ -567,7 +603,7 @@
 
                           {% if mid_yr_comment_box.created_by ==  request.user.profile%}
                           <th >
-                            <p>Mid year : Your comments</p>
+                            <p>Mid year : Manager comments</p>
                             <table>
                               <tr>
 
@@ -628,7 +664,61 @@
 
                         {%endif%}
                         {%endif%}
+                         <tr>
 
+                                     <th >
+                                            <p>End year : Employee  comments</p>
+                                            <table>
+                                                <tr>
+
+                                                    <td><a ><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                                    </a>
+                                                    </td>
+                                                    <td width="10%">
+                                                    </td>
+
+                                                    <td>
+                                                        <a href="">
+                                                         <i class="fa fa-pencil-square-o" title = "Update comments"></i>
+                                                        </a>
+                                                    </td>
+
+                                                </tr>
+                                            </table>
+                                          </th>
+                                        <td colspan="2">
+                                              <textarea id="w3review" name="w3review" rows="4" cols="30">
+                                              </textarea>
+                                          </td>
+                                      
+
+                                        <th >
+                                            <p>End year : Manager comments</p>
+                                             <table>
+                                                <tr>
+                                                    <td><a><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                                    </a>
+                                                    </td>
+                                                    <td width="10%">
+                                                    </td>
+                                                    <td>
+                                                        <a >
+                                                         <i class="fa fa-pencil-square-o" title = "Update comments"></i>
+                                                        </a>
+                                                    </td>
+
+                                                </tr>
+                                            </table>
+
+                                        </th>
+
+                                        <td colspan="2">
+                                              <textarea id="w3review" name="w3review" rows="4" cols="30">
+
+                                              </textarea>
+                                        </td>
+
+                                </tr>
 
                         <tr class="p">
                                 <td colspan="10" class="hiddenRow">
@@ -754,3 +844,15 @@
     {%endblock%}
 
 </body>
+© 2020 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
