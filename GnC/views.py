@@ -632,7 +632,7 @@ class Mid_Yr_Create_Comment(CreateView):
         form.instance.goal = Goals.objects.get(id=id)
         # print(self.request.user.id)
         form.instance.created_by = self.request.user.profile
-        form.instance.user = self.request.user.id
+        form.instance.user_id = self.request.user.id
         # form.instance.appraisal = User_Appraisal_List.objects.get(id=id)
         # form.instance.progress = 'Not Started'
         print(form.cleaned_data)
