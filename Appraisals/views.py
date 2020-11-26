@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from Profile.models import Profile, Departments
 from .models import Appraisal_Category, Overall_Appraisal, Rating_Scale, User_Appraisal_List, Appraisal, peerAppraisal, peerAppraisalQuestion
-from GnC.models import Goals, Competencies, Comment_Box
+from GnC.models import Goals, Competencies, Comment_Box, KPI
 from Trainings.models import Skills, Career_Discussion
 #from .forms import CreateAppraisalForm, GoalsFormset, CompetenciesFormset
 from .decorators import unauthenticated_user, allowed_users, redirect_users
@@ -518,7 +518,7 @@ def UpdateMidAppraisalG(request, *args, **kwargs):
 
     goal_ids = [goal.id for goal in queryset1]
     goal_comments = Comment_Box.objects.filter(goal__in = goal_ids)
-
+    kpis = KPI.objects.filter(goal__in = goal_ids)
 
 
     if request.method == 'POST' and 'send' in request.POST:
@@ -534,6 +534,7 @@ def UpdateMidAppraisalG(request, *args, **kwargs):
         formset = GoalsFormset(queryset = queryset1)
 
     context ={
+        "kpis": kpis,
         "goal_comments": goal_comments,
         "goals_formset": formset,
         "employee_appraisal": selfappraisal
@@ -553,7 +554,7 @@ def UpdateMidAppraisalG_M(request, *args, **kwargs):
 
     goal_ids = [goal.id for goal in queryset1]
     goal_comments = Comment_Box.objects.filter(goal__in = goal_ids)
-
+    kpis = KPI.objects.filter(goal__in = goal_ids)
 
     if request.method == 'POST' and 'send' in request.POST:
         formset = GoalsFormset(request.POST or None, queryset = queryset1)
@@ -570,6 +571,7 @@ def UpdateMidAppraisalG_M(request, *args, **kwargs):
         formset = GoalsFormset(queryset = queryset1)
 
     context ={
+        "kpis": kpis,
         "goal_comments": goal_comments,
         "goals_formset": formset,
         "employee_appraisal": selfappraisal
