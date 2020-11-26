@@ -61,6 +61,30 @@
 
                         <div class = "card card-body form-card">
                             {{form|crispy}}
+                            
+                            {%for kpi in kpis%}
+                            {%if kpi.goal_id == form.id.value%}
+
+
+                                    <tr>
+                                        <th style = "width: 40%;">KPI Description</th>
+                                        <textarea rows="2" cols="2" readonly disabled>{{kpi.description}}</textarea>
+                                        <th style = "width: 15%;">Date Created</th>
+                                        <textarea rows="1" cols="2" readonly disabled>{{kpi.date_created}}</textarea>
+                                        <!-- <th style = "width: 15%;">Due</th>
+                                        <textarea rows="3" cols="2" readonly disabled>{{kpi.due}}</textarea> -->
+
+
+                                    </tr>
+                                    <div><p>
+                                    <td></td>
+                                    </p>
+                                  </div>
+
+
+                              {%endif%}
+                              {%endfor%}
+                            
                             {%for comment in goal_comments%}
                             <td></td>
 
