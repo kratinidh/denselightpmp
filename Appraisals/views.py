@@ -14,7 +14,7 @@ from django.contrib import messages
 from shapeshifter.views import MultiFormView, MultiModelFormView
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import render, redirect, get_object_or_404
-# from django.core.mail import send_mail
+from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group, User
 from django.views.generic.edit import CreateView,  UpdateView
@@ -1492,7 +1492,7 @@ def Add_User_Appraisal_Indiv(request, *args, **kwargs):
 
         # notification = "Dear Users, \n\n The Performance Appraisal Exercise has started! \n\n Please see the datelines for the various stages below: \n " + "+1"
         # if len(list_of_emails) >= 0:
-        #     send_mail('Creation of Overall Appraisal', 'Hi! \n\t An Overall Appraisal have been launched and you are in it!', from_email = 'bennyteomh@gmail.com', recipient_list=[list_of_emails], fail_silently=True)
+            # send_mail('Creation of Overall Appraisal', 'Hi! \n\t An Overall Appraisal have been launched and you are in it!', from_email = 'bennyteomh@gmail.com', recipient_list=[list_of_emails], fail_silently=True)
 
         return HttpResponseRedirect(reverse('Appraisals:Create_Overall_Appraisal_Stage3', args=(overall_appraisal.id,)))
 
@@ -1787,7 +1787,7 @@ def create_Overall_Appraisal_Stage4(request, *args, **kwargs):
         overall_app.status = 'Stage 1'
         overall_app.save()
         if len(list_of_emails) > 0:
-            # send_mail('The Performance Appraisal Exercise has started!', email_string, from_email = 'denselight_epmp@consulthunet.com', recipient_list=list_of_emails, fail_silently=True)
+            send_mail('The Performance Appraisal Exercise has started!', email_string, from_email = 'denselight_epmp@consulthunet.com', recipient_list=list_of_emails, fail_silently=True)
         return HttpResponseRedirect(reverse('user_homepage'))
 
     context={
@@ -1826,13 +1826,13 @@ def update_Overall_Appraisal(request, *args, **kwargs):
     id = kwargs.get('pk')
     overall_appraisal = Overall_Appraisal.objects.get(id=id)
 
-    # email_string = ""
-    # listOfEmails = []
-    # for userappraisal in overall_appraisal.user_appraisal_list_set.all():
-    #     try:
-    #         listOfEmails.append(userappraisal.employee.email)
-    #     except Exception:
-    #         pass
+    email_string = ""
+    listOfEmails = []
+    for userappraisal in overall_appraisal.user_appraisal_list_set.all():
+        try:
+            listOfEmails.append(userappraisal.employee.email)
+        except Exception:
+            pass
 
     form = UpdateOverallAppraisalForm(request.POST or None, instance = overall_appraisal)
     if form.is_valid():
@@ -1842,25 +1842,25 @@ def update_Overall_Appraisal(request, *args, **kwargs):
             return HttpResponseRedirect(reverse('user_homepage'))
         overall_app.save()
 
-        # if overall_app.status == 'Stage 1':
-        #     try:
-        #         email_string = APPRAISAL_LAUNCHING_EMAIL(overall_app)
-        #         # send_mail('Initialisation of Performance Appraisal Launch', email_string, from_email = 'denselight_epmp@consulthunet.com', recipient_list=listOfEmails, fail_silently=True)
-        #     except Exception:
-        #         pass
-        #
-        # elif overall_app.status == 'Stage 1B':
-        #     try:
-        #         email_string = MID_YEAR_REVIEW_EMAIL(str(overall_app.mid_year_end_date))
-        #         # send_mail('Mid-Year Review has started!', email_string, from_email = 'denselight_epmp@consulthunet.com', recipient_list=listOfEmails, fail_silently=True)
-        #     except Exception:
-        #         pass
-        # elif overall_app.status == 'Stage 2':
-        #     try:
-        #         email_string = YEAR_END_REVIEW_EMAIL(str(overall_app.mid_year_end_date))
-        #         # send_mail('Year-End Review has started!', email_string, from_email = 'denselight_epmp@consulthunet.com', recipient_list=listOfEmails, fail_silently=True)
-        #     except Exception:
-        #         pass
+        if overall_app.status == 'Stage 1':
+            try:
+                email_string = APPRAISAL_LAUNCHING_EMAIL(overall_app)
+                send_mail('Initialisation of Performance Appraisal Launch', email_string, from_email = 'denselight_epmp@consulthunet.com', recipient_list=listOfEmails, fail_silently=True)
+            except Exception:
+                pass
+
+        elif overall_app.status == 'Stage 1B':
+            try:
+                email_string = MID_YEAR_REVIEW_EMAIL(str(overall_app.mid_year_end_date))
+                send_mail('Mid-Year Review has started!', email_string, from_email = 'denselight_epmp@consulthunet.com', recipient_list=listOfEmails, fail_silently=True)
+            except Exception:
+                pass
+        elif overall_app.status == 'Stage 2':
+            try:
+                email_string = YEAR_END_REVIEW_EMAIL(str(overall_app.mid_year_end_date))
+                send_mail('Year-End Review has started!', email_string, from_email = 'denselight_epmp@consulthunet.com', recipient_list=listOfEmails, fail_silently=True)
+            except Exception:
+                pass
         return HttpResponseRedirect(reverse('user_homepage'))
 
     context={
