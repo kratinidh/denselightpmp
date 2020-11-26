@@ -380,26 +380,25 @@
                                             <td><a title = "See More Details" href = "{%url 'GnC:Detail_Goals' goals.id %}"><i class="fa fa-ellipsis-h"></i></a></td>
                                         </tr>
                                         
-                                        {% if appraisal.overall_appraisal.status == 'Stage 1' or appraisal.overall_appraisal.status == 'Stage 1B'%}
+                                       {% if appraisal.overall_appraisal.status == 'Stage 1' or appraisal.overall_appraisal.status == 'Stage 1B'%}
                                         {% if goals.comment_box_set.count == 0%}
 
-                                       
                                         <th>
-                                          <p>Employee comments</p>
-                                        	 <table>
-                                            	<tr>
-                                            		<td><a href="{%url 'GnC:Create_User_Comments' goals.id %}"><i class="fa fa-plus-square-o" title = "Add Comments"></i>
-                                            		</a>
-                                            	    </td>
-                                            	    <td width="10%">
-                                            		</td>
-                                            		<td>
-                                            			<a >
+                                          <p>Goal Settings:Employee comments</p>
+                                             <table>
+                                                <tr>
+                                                    <td><a href="{%url 'GnC:Create_User_Comments' goals.id %}"><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                                    </a>
+                                                    </td>
+                                                    <td width="10%">
+                                                    </td>
+                                                    <td>
+                                                        <a >
                                                          <i class="fa fa-pencil-square-o" title = "Update comments"></i>
-                                            			</a>
-                                            		</td>
+                                                        </a>
+                                                    </td>
 
-                                            	</tr>
+                                                </tr>
                                             </table>
 
                                         </th>
@@ -407,21 +406,21 @@
                                               <textarea id="w3review" name="w3review" rows="4" cols="30"></textarea>
                                         </td>
                                         <th>
-                                          <p>Manager comments</p>
-                                        	 <table>
-                                            	<tr>
-                                            		<td><a><i class="fa fa-plus-square-o" title = "Add Comments"></i>
-                                            		</a>
-                                            	    </td>
-                                            	    <td width="10%">
-                                            		</td>
-                                            		<td>
-                                            			<a >
+                                          <p>Goal Settings:Manager comments</p>
+                                             <table>
+                                                <tr>
+                                                    <td><a><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                                    </a>
+                                                    </td>
+                                                    <td width="10%">
+                                                    </td>
+                                                    <td>
+                                                        <a >
                                                          <i class="fa fa-pencil-square-o" title = "Update comments"></i>
-                                            			</a>
-                                            		</td>
+                                                        </a>
+                                                    </td>
 
-                                            	</tr>
+                                                </tr>
                                             </table>
 
                                         </th>
@@ -438,31 +437,31 @@
                                         <tr>
 
                                         <th >
-                                            <p>Employee comments</p>
+                                            <p>Goal Settings:Employee comments</p>
                                             <table>
-                                            	<tr>
+                                                <tr>
                                                 {% if comment_box.created_by ==  request.user.profile%}
-                                            		<td><a ><i class="fa fa-plus-square-o" title = "Add Comments"></i>
-                                            		</a>
-                                            	    </td>
-                                            	    <td width="10%">
-                                            		</td>
+                                                    <td><a ><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                                    </a>
+                                                    </td>
+                                                    <td width="10%">
+                                                    </td>
 
-                                            		<{%if appraisal.overall_appraisal.status == 'Stage 1'%}
+                                                    {%if appraisal.overall_appraisal.status == 'Stage 1'%}
                                                 <td>
-                                            			<a href="{%url 'GnC:Update_Comment' comment_box.id %}">
+                                                        <a href="{%url 'GnC:Update_Comment' comment_box.id %}">
                                                          <i class="fa fa-pencil-square-o" title = "Update comments"></i>
-                                            			</a>
-                                            		</td>
+                                                        </a>
+                                                    </td>
                                                   {%else%}
                                                   <td>
-                                              			<a>
+                                                        <a>
                                                            <i class="fa fa-pencil-square-o" title = "Update comments"></i>
-                                              			</a>
-                                              		</td>
+                                                        </a>
+                                                    </td>
                                                   {%endif%}
 
-                                            	</tr>
+                                                </tr>
                                             </table>
                                           </th>
                                         <td colspan="2">
@@ -496,21 +495,21 @@
 
 
                                         <th >
-                                        	<p>Manager comments</p>
-                                        	 <table>
-                                            	<tr>
-                                            		<td><a><i class="fa fa-plus-square-o" title = "Add Comments"></i>
-                                            		</a>
-                                            	    </td>
-                                            	    <td width="10%">
-                                            		</td>
-                                            		<td>
-                                            			<a >
+                                            <p>Goal Settings:Manager comments</p>
+                                             <table>
+                                                <tr>
+                                                    <td><a><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                                    </a>
+                                                    </td>
+                                                    <td width="10%">
+                                                    </td>
+                                                    <td>
+                                                        <a >
                                                          <i class="fa fa-pencil-square-o" title = "Update comments"></i>
-                                            			</a>
-                                            		</td>
+                                                        </a>
+                                                    </td>
 
-                                            	</tr>
+                                                </tr>
                                             </table>
 
                                         </th>
@@ -534,31 +533,31 @@
 
                                           {% if comment_box.created_by ==  request.user.profile%}
                                           <th >
-                                            <p>Employee comments</p>
+                                            <p>Goal Settings:Employee comments</p>
                                             <table>
-                                            	<tr>
+                                                <tr>
 
-                                            		<td><a ><i class="fa fa-plus-square-o" title = "Add Comments"></i>
-                                            		</a>
-                                            	    </td>
-                                            	    <td width="10%">
-                                            		</td>
+                                                    <td><a ><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                                    </a>
+                                                    </td>
+                                                    <td width="10%">
+                                                    </td>
 
-                                            		{%if appraisal.overall_appraisal.status == 'Stage 1'%}
+                                                    {%if appraisal.overall_appraisal.status == 'Stage 1'%}
                                                 <td>
-                                            			<a href="{%url 'GnC:Update_Comment' comment_box.id %}">
+                                                        <a href="{%url 'GnC:Update_Comment' comment_box.id %}">
                                                          <i class="fa fa-pencil-square-o" title = "Update comments"></i>
-                                            			</a>
-                                            		</td>
+                                                        </a>
+                                                    </td>
                                                   {%else%}
                                                   <td>
-                                              			<a>
+                                                        <a>
                                                            <i class="fa fa-pencil-square-o" title = "Update comments"></i>
-                                              			</a>
-                                              		</td>
+                                                        </a>
+                                                    </td>
                                                   {%endif%}
 
-                                            	</tr>
+                                                </tr>
                                             </table>
                                           </th>
                                         <td colspan="2">
@@ -571,21 +570,21 @@
                                           {% if comment_box.created_by !=  request.user.profile%}
 
                                         <th >
-                                        	<p>Manager comments</p>
-                                        	 <table>
-                                            	<tr>
-                                            		<td><a><i class="fa fa-plus-square-o" title = "Add Comments"></i>
-                                            		</a>
-                                            	    </td>
-                                            	    <td width="10%">
-                                            		</td>
-                                            		<td>
-                                            			<a >
+                                            <p>Goal Settings:Manager comments</p>
+                                             <table>
+                                                <tr>
+                                                    <td><a><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                                    </a>
+                                                    </td>
+                                                    <td width="10%">
+                                                    </td>
+                                                    <td>
+                                                        <a >
                                                          <i class="fa fa-pencil-square-o" title = "Update comments"></i>
-                                            			</a>
-                                            		</td>
+                                                        </a>
+                                                    </td>
 
-                                            	</tr>
+                                                </tr>
                                             </table>
 
                                         </th>
@@ -602,28 +601,28 @@
                                         </tr>
 
                                         {%endif%}
-             
-                                         {%elif appraisal.overall_appraisal.status == 'Stage 1B'%}
+                    
+                                        
 
                                         {% if goals.mid_yr_comment_box_set.count == 0%}
 
 
                                         <th>
-                                          <p>Mid year : Your comments</p>
-                                        	 <table>
-                                            	<tr>
-                                            		<td><a href="{%url 'GnC:Mid_Yr_Create_User_Comments' goals.id %}"><i class="fa fa-plus-square-o" title = "Add Comments"></i>
-                                            		</a>
-                                            	    </td>
-                                            	    <td width="10%">
-                                            		</td>
-                                            		<td>
-                                            			<a >
+                                          <p>Mid year : Employee comments</p>
+                                             <table>
+                                                <tr>
+                                                    <td><a href="{%url 'GnC:Mid_Yr_Create_User_Comments' goals.id %}"><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                                    </a>
+                                                    </td>
+                                                    <td width="10%">
+                                                    </td>
+                                                    <td>
+                                                        <a >
                                                          <i class="fa fa-pencil-square-o" title = "Update comments"></i>
-                                            			</a>
-                                            		</td>
+                                                        </a>
+                                                    </td>
 
-                                            	</tr>
+                                                </tr>
                                             </table>
 
                                         </th>
@@ -632,20 +631,20 @@
                                         </td>
                                         <th>
                                           <p>Mid Year : Manager comments</p>
-                                        	 <table>
-                                            	<tr>
-                                            		<td><a><i class="fa fa-plus-square-o" title = "Add Comments"></i>
-                                            		</a>
-                                            	    </td>
-                                            	    <td width="10%">
-                                            		</td>
-                                            		<td>
-                                            			<a >
+                                             <table>
+                                                <tr>
+                                                    <td><a><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                                    </a>
+                                                    </td>
+                                                    <td width="10%">
+                                                    </td>
+                                                    <td>
+                                                        <a >
                                                          <i class="fa fa-pencil-square-o" title = "Update comments"></i>
-                                            			</a>
-                                            		</td>
+                                                        </a>
+                                                    </td>
 
-                                            	</tr>
+                                                </tr>
                                             </table>
 
                                         </th>
@@ -659,23 +658,23 @@
                                         <tr>
 
                                         <th >
-                                            <p>Mid Year : Your comments</p>
+                                            <p>Mid Year : Employee  comments</p>
                                             <table>
-                                            	<tr>
+                                                <tr>
                                                 {% if mid_yr_comment_box.created_by ==  request.user.profile%}
-                                            		<td><a ><i class="fa fa-plus-square-o" title = "Add Comments"></i>
-                                            		</a>
-                                            	    </td>
-                                            	    <td width="10%">
-                                            		</td>
+                                                    <td><a ><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                                    </a>
+                                                    </td>
+                                                    <td width="10%">
+                                                    </td>
 
-                                            		<td>
-                                            			<a href="{%url 'GnC:Mid_Yr_Update_Comment' mid_yr_comment_box.id %}">
+                                                    <td>
+                                                        <a href="{%url 'GnC:Mid_Yr_Update_Comment' mid_yr_comment_box.id %}">
                                                          <i class="fa fa-pencil-square-o" title = "Update comments"></i>
-                                            			</a>
-                                            		</td>
+                                                        </a>
+                                                    </td>
 
-                                            	</tr>
+                                                </tr>
                                             </table>
                                           </th>
                                         <td colspan="2">
@@ -709,21 +708,21 @@
 
 
                                         <th >
-                                        	<p>Mid year : Manager comments</p>
-                                        	 <table>
-                                            	<tr>
-                                            		<td><a><i class="fa fa-plus-square-o" title = "Add Comments"></i>
-                                            		</a>
-                                            	    </td>
-                                            	    <td width="10%">
-                                            		</td>
-                                            		<td>
-                                            			<a >
+                                            <p>Mid year : Manager comments</p>
+                                             <table>
+                                                <tr>
+                                                    <td><a><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                                    </a>
+                                                    </td>
+                                                    <td width="10%">
+                                                    </td>
+                                                    <td>
+                                                        <a >
                                                          <i class="fa fa-pencil-square-o" title = "Update comments"></i>
-                                            			</a>
-                                            		</td>
+                                                        </a>
+                                                    </td>
 
-                                            	</tr>
+                                                </tr>
                                             </table>
 
                                         </th>
@@ -747,23 +746,23 @@
 
                                           {% if mid_yr_comment_box.created_by ==  request.user.profile%}
                                           <th >
-                                            <p>Mid year : Your comments</p>
+                                            <p>Mid year : Employee  comments</p>
                                             <table>
-                                            	<tr>
+                                                <tr>
 
-                                            		<td><a ><i class="fa fa-plus-square-o" title = "Add Comments"></i>
-                                            		</a>
-                                            	    </td>
-                                            	    <td width="10%">
-                                            		</td>
+                                                    <td><a ><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                                    </a>
+                                                    </td>
+                                                    <td width="10%">
+                                                    </td>
 
-                                            		<td>
-                                            			<a href="{%url 'GnC:Mid_Yr_Update_Comment' mid_yr_comment_box.id %}">
+                                                    <td>
+                                                        <a href="{%url 'GnC:Mid_Yr_Update_Comment' mid_yr_comment_box.id %}">
                                                          <i class="fa fa-pencil-square-o" title = "Update comments"></i>
-                                            			</a>
-                                            		</td>
+                                                        </a>
+                                                    </td>
 
-                                            	</tr>
+                                                </tr>
                                             </table>
                                           </th>
                                         <td colspan="2">
@@ -776,21 +775,21 @@
                                           {% if mid_yr_comment_box.created_by !=  request.user.profile%}
 
                                         <th >
-                                        	<p>Mid year : Manager comments</p>
-                                        	 <table>
-                                            	<tr>
-                                            		<td><a><i class="fa fa-plus-square-o" title = "Add Comments"></i>
-                                            		</a>
-                                            	    </td>
-                                            	    <td width="10%">
-                                            		</td>
-                                            		<td>
-                                            			<a >
+                                            <p>Mid year : Manager comments</p>
+                                             <table>
+                                                <tr>
+                                                    <td><a><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                                    </a>
+                                                    </td>
+                                                    <td width="10%">
+                                                    </td>
+                                                    <td>
+                                                        <a >
                                                          <i class="fa fa-pencil-square-o" title = "Update comments"></i>
-                                            			</a>
-                                            		</td>
+                                                        </a>
+                                                    </td>
 
-                                            	</tr>
+                                                </tr>
                                             </table>
 
                                         </th>
@@ -808,6 +807,66 @@
 
                                         {%endif%}
                                         {%endif%}
+                                                    </tr>
+                                                       <tr>
+
+                                     <th >
+                                            <p>End year : Employee  comments</p>
+                                            <table>
+                                                <tr>
+
+                                                    <td><a ><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                                    </a>
+                                                    </td>
+                                                    <td width="10%">
+                                                    </td>
+
+                                                    <td>
+                                                        <a href="">
+                                                         <i class="fa fa-pencil-square-o" title = "Update comments"></i>
+                                                        </a>
+                                                    </td>
+
+                                                </tr>
+                                            </table>
+                                          </th>
+                                        <td colspan="2">
+                                              <textarea id="w3review" name="w3review" rows="4" cols="30">
+                                              </textarea>
+                                          </td>
+                                      
+
+                                        <th >
+                                            <p>End year : Manager comments</p>
+                                             <table>
+                                                <tr>
+                                                    <td><a><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                                    </a>
+                                                    </td>
+                                                    <td width="10%">
+                                                    </td>
+                                                    <td>
+                                                        <a >
+                                                         <i class="fa fa-pencil-square-o" title = "Update comments"></i>
+                                                        </a>
+                                                    </td>
+
+                                                </tr>
+                                            </table>
+
+                                        </th>
+
+                                        <td colspan="2">
+                                              <textarea id="w3review" name="w3review" rows="4" cols="30">
+
+                                              </textarea>
+                                        </td>
+
+                                </tr>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        }
                                      
                                         <tr class="p">
                                             <td colspan="10" class="hiddenRow">
