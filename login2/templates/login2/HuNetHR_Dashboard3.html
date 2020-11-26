@@ -710,10 +710,9 @@
                                             </table>
                                             <br>
                                             <tr>
-                                                  {% if appraisal.overall_appraisal.status == 'Stage 1' or appraisal.overall_appraisal.status == 'Stage 1B'%}
+                                        {% if appraisal.overall_appraisal.status == 'Stage 1' or appraisal.overall_appraisal.status == 'Stage 1B'%}
                                         {% if goals.comment_box_set.count == 0%}
 
-                                        
                                         <th>
                                           <p>Goal Settings:Employee comments</p>
                                              <table>
@@ -767,7 +766,7 @@
 
                                         <tr>
 
-                                        <th colspan ="2">
+                                        <th >
                                             <p>Goal Settings:Employee comments</p>
                                             <table>
                                                 <tr>
@@ -823,7 +822,7 @@
                                         </textarea>
                                   </td>
                                   {%endif%}
-                                  
+
 
                                         <th >
                                             <p>Goal Settings:Manager comments</p>
@@ -863,7 +862,7 @@
                                         {%for comment_box in goals.comment_box_set.all%}
 
                                           {% if comment_box.created_by ==  request.user.profile%}
-                                          <th colspan ="2">
+                                          <th >
                                             <p>Goal Settings:Employee comments</p>
                                             <table>
                                                 <tr>
@@ -930,15 +929,13 @@
                                         {%endfor%}
                                         </td>
                                         </tr>
-                                           
+
                                         {%endif%}
+                    
                                         
-                                        {%endif%}
-                                         
-                
-                                        <tr>
 
                                         {% if goals.mid_yr_comment_box_set.count == 0%}
+
 
                                         <th>
                                           <p>Mid year : Employee comments</p>
@@ -991,7 +988,7 @@
                                         <tr>
 
                                         <th >
-                                             <p>Mid Year : Employee comments</p>
+                                            <p>Mid Year : Employee  comments</p>
                                             <table>
                                                 <tr>
                                                 {% if mid_yr_comment_box.created_by ==  request.user.profile%}
@@ -1079,7 +1076,7 @@
 
                                           {% if mid_yr_comment_box.created_by ==  request.user.profile%}
                                           <th >
-                                            <p>Mid year : Employee comments</p>
+                                            <p>Mid year : Employee  comments</p>
                                             <table>
                                                 <tr>
 
@@ -1139,19 +1136,68 @@
                                         </tr>
 
                                         {%endif%}
-                                        
+                                        {%endif%}
+                                                    </tr>
+                                                       <tr>
 
+                                     <th >
+                                            <p>End year : Employee  comments</p>
+                                            <table>
+                                                <tr>
+
+                                                    <td><a ><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                                    </a>
+                                                    </td>
+                                                    <td width="10%">
+                                                    </td>
+
+                                                    <td>
+                                                        <a href="">
+                                                         <i class="fa fa-pencil-square-o" title = "Update comments"></i>
+                                                        </a>
+                                                    </td>
+
+                                                </tr>
+                                            </table>
+                                          </th>
+                                        <td colspan="2">
+                                              <textarea id="w3review" name="w3review" rows="4" cols="30">
+                                              </textarea>
+                                          </td>
+                                      
+
+                                        <th >
+                                            <p>End year : Manager comments</p>
+                                             <table>
+                                                <tr>
+                                                    <td><a><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                                    </a>
+                                                    </td>
+                                                    <td width="10%">
+                                                    </td>
+                                                    <td>
+                                                        <a >
+                                                         <i class="fa fa-pencil-square-o" title = "Update comments"></i>
+                                                        </a>
+                                                    </td>
+
+                                                </tr>
+                                            </table>
+
+                                        </th>
+
+                                        <td colspan="2">
+                                              <textarea id="w3review" name="w3review" rows="4" cols="30">
+
+                                              </textarea>
+                                        </td>
+
+                                </tr>
                                                 </div>
                                             </td>
                                         </tr>
                                         {%endfor%}
                                         {%endif%}
-                                            </tr>
-                                        </div>
-                                    </td>
-                                </tr>
-                                {%endfor%}
-                                {%endif%}
                                 </tbody>
                                 </table>
                             </div>
