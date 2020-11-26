@@ -421,7 +421,7 @@
 
                                         <!-- <td><a href="{%url 'GnC:Create_User_Comments' goals.id %}"><i class="fa fa-plus-square-o" title = "Add Comments"></i> -->
                                         <th>
-                                          <p>Employee comments</p>
+                                          <p>Goal Settings:Employee comments</p>
                                              <table>
                                                 <tr>
                                                     <td><a href="{%url 'GnC:Create_User_Comments' goals.id %}"><i class="fa fa-plus-square-o" title = "Add Comments"></i>
@@ -443,7 +443,7 @@
                                               <textarea id="w3review" name="w3review" rows="4" cols="30"></textarea>
                                         </td>
                                         <th>
-                                          <p>Manager comments</p>
+                                          <p>Goal Settings:Manager comments</p>
                                              <table>
                                                 <tr>
                                                     <td><a><i class="fa fa-plus-square-o" title = "Add Comments"></i>
@@ -474,7 +474,7 @@
                                         <tr>
 
                                         <th >
-                                            <p>Employee comments</p>
+                                            <p>Goal Settings:Employee comments</p>
                                             <table>
                                                 <tr>
                                                 {% if comment_box.created_by ==  request.user.profile%}
@@ -532,7 +532,7 @@
 
 
                                         <th >
-                                            <p>Manager comments</p>
+                                            <p>Goal Settings:Manager comments</p>
                                              <table>
                                                 <tr>
                                                     <td><a><i class="fa fa-plus-square-o" title = "Add Comments"></i>
@@ -570,7 +570,7 @@
 
                                           {% if comment_box.created_by ==  request.user.profile%}
                                           <th >
-                                            <p>Employee comments</p>
+                                            <p>Goal Settings:Employee comments</p>
                                             <table>
                                                 <tr>
 
@@ -607,7 +607,7 @@
                                           {% if comment_box.created_by !=  request.user.profile%}
 
                                         <th >
-                                            <p>Manager comments</p>
+                                            <p>Goal Settings:Manager comments</p>
                                              <table>
                                                 <tr>
                                                     <td><a><i class="fa fa-plus-square-o" title = "Add Comments"></i>
@@ -645,7 +645,7 @@
 
 
                                         <th>
-                                          <p>Mid year : Your comments</p>
+                                          <p>Mid year : Employee comments</p>
                                              <table>
                                                 <tr>
                                                     <td><a href="{%url 'GnC:Mid_Yr_Create_User_Comments' goals.id %}"><i class="fa fa-plus-square-o" title = "Add Comments"></i>
@@ -695,7 +695,7 @@
                                         <tr>
 
                                         <th >
-                                            <p>Mid Year : Your comments</p>
+                                            <p>Mid Year : Employee comments</p>
                                             <table>
                                                 <tr>
                                                 {% if mid_yr_comment_box.created_by ==  request.user.profile%}
@@ -783,7 +783,7 @@
 
                                           {% if mid_yr_comment_box.created_by ==  request.user.profile%}
                                           <th >
-                                            <p>Mid year : Your comments</p>
+                                            <p>Mid year : Employee comments</p>
                                             <table>
                                                 <tr>
 
@@ -850,6 +850,62 @@
                                                 </div> 
                                             </td> 
                                         </tr>
+                                                           <tr>
+
+                                     <th >
+                                            <p>End year : Employee  comments</p>
+                                            <table>
+                                                <tr>
+
+                                                    <td><a ><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                                    </a>
+                                                    </td>
+                                                    <td width="10%">
+                                                    </td>
+
+                                                    <td>
+                                                        <a href="">
+                                                         <i class="fa fa-pencil-square-o" title = "Update comments"></i>
+                                                        </a>
+                                                    </td>
+
+                                                </tr>
+                                            </table>
+                                          </th>
+                                        <td colspan="2">
+                                              <textarea id="w3review" name="w3review" rows="4" cols="30">
+                                              </textarea>
+                                          </td>
+                                      
+
+                                        <th >
+                                            <p>End year : Manager comments</p>
+                                             <table>
+                                                <tr>
+                                                    <td><a><i class="fa fa-plus-square-o" title = "Add Comments"></i>
+                                                    </a>
+                                                    </td>
+                                                    <td width="10%">
+                                                    </td>
+                                                    <td>
+                                                        <a >
+                                                         <i class="fa fa-pencil-square-o" title = "Update comments"></i>
+                                                        </a>
+                                                    </td>
+
+                                                </tr>
+                                            </table>
+
+                                        </th>
+
+                                        <td colspan="2">
+                                              <textarea id="w3review" name="w3review" rows="4" cols="30">
+
+                                              </textarea>
+                                        </td>
+
+                                </tr>
+                      
                                         {%endfor%}
                                         {%endif%}
                                     </tbody>
