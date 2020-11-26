@@ -565,7 +565,7 @@
                                         {%endif%}
                                         {%endfor%}
 
-                                        {% elif goals.comment_box_set.count == 2%}
+                                    
                                         {%for comment_box in goals.comment_box_set.all%}
 
                                           {% if comment_box.created_by ==  request.user.profile%}
