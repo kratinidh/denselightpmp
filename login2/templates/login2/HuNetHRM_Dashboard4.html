@@ -422,7 +422,7 @@
 
                                         <tr>
 
-                                        <th >
+                                        <th colspan ="2">
                                             <p>Goal Settings:Employee comments</p>
                                             <table>
                                             	<tr>
@@ -518,7 +518,7 @@
                                         {%for comment_box in goals.comment_box_set.all%}
 
                                           {% if comment_box.created_by ==  request.user.profile%}
-                                          <th >
+                                          <th colspan ="2">
                                             <p>Goal Settings:Employee comments</p>
                                             <table>
                                             	<tr>
@@ -647,7 +647,7 @@
                                         <tr>
 
                                         <th >
-                                            <p>Mid Year : Employee comments</p>
+                                             <p>Mid Year : Employee comments</p>
                                             <table>
                                             	<tr>
                                                 {% if mid_yr_comment_box.created_by ==  request.user.profile%}
