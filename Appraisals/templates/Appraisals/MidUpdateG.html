@@ -1,3 +1,5 @@
+
+
 <!--Inherit HTML from parent class 'sidenav'-->
 {%extends 'homepage.html'%}
 
@@ -90,10 +92,10 @@
 
                             {%if comment.goal_id == form.id.value%}
                               {%if comment.created_by != request.user.profile%}
-                              <p>Goal settings:Employee comments</p>
+                              <p>Goal settings:Manager comments</p>
                               <textarea rows="3" cols="4" readonly disabled>{{comment.comment}}</textarea>
                               {%elif comment.created_by == request.user.profile%}
-                               <p>Goal settings:Manager comments</p>
+                               <p>Goal settings:Employee comments</p>
                               <textarea rows="3" cols="4" readonly disabled>{{comment.comment}}</textarea>
                               {%endif%}
                             {%endif%}
