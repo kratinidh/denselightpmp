@@ -447,7 +447,7 @@
                                                     <td width="10%">
                                                     </td>
 
-                                                    {%if appraisal.overall_appraisal.status == 'Stage 1'%}
+                                                     {% if appraisal.overall_appraisal.status == 'Stage 1' or appraisal.overall_appraisal.status == 'Stage 1B'%}
                                                 <td>
                                                         <a href="{%url 'GnC:Update_Comment' comment_box.id %}">
                                                          <i class="fa fa-pencil-square-o" title = "Update comments"></i>
@@ -543,7 +543,7 @@
                                                     <td width="10%">
                                                     </td>
 
-                                                    {%if appraisal.overall_appraisal.status == 'Stage 1'%}
+                                                     {% if appraisal.overall_appraisal.status == 'Stage 1' or appraisal.overall_appraisal.status == 'Stage 1B'%}
                                                 <td>
                                                         <a href="{%url 'GnC:Update_Comment' comment_box.id %}">
                                                          <i class="fa fa-pencil-square-o" title = "Update comments"></i>
