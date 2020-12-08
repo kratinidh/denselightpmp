@@ -39,7 +39,6 @@ class Create_Profile(CreateView):
     template_name = 'EM/HuNet_CreateProfile.html'
 
     def form_valid(self, form):
-        print(form.cleaned_data)
         super(Create_Profile,self).form_valid(form)
 
 
@@ -50,7 +49,6 @@ class Update_Profile(UpdateView):
     success_url = reverse_lazy('EM:HR_EM')
 
     def form_valid(self, form):
-        print(form.cleaned_data)
         return super(Update_Profile,self).form_valid(form)
 
 class Delete_Profile(DeleteView):

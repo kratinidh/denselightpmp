@@ -24,7 +24,6 @@ class Create_Skills(CreateView):
         form.instance.appraisal = user_appraisal_list
         form.instance.employee = self.request.user.profile
 
-        print(form.cleaned_data)
         return super(Create_Skills, self).form_valid(form)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -34,7 +33,6 @@ class Create_skill_category(CreateView):
     template_name = 'Trainings/HuNet_Createskillcat.html'
 
     def form_valid(self, form):
-        print(form.cleaned_data)
         return super(Create_skill_category, self).form_valid(form)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -45,7 +43,6 @@ class Update_Skills(UpdateView):
     template_name = 'Trainings/HuNet_UpdateSkills.html'
 
     def form_valid(self, form):
-        print(form.cleaned_data)
         return super(Update_Skills, self).form_valid(form)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')

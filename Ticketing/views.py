@@ -42,7 +42,6 @@ class Create_Ticketing(CreateView):
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user.profile
-        print(form.cleaned_data)
         return super(Create_Ticketing, self).form_valid(form)
 
 class Create_Comments(CreateView):
@@ -53,7 +52,6 @@ class Create_Comments(CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user.profile
-        print(form.cleaned_data)
         return super(Create_Comments, self).form_valid(form)
 
 class Update_Ticketing(UpdateView):
@@ -63,7 +61,6 @@ class Update_Ticketing(UpdateView):
     success_url = reverse_lazy('Ticketing:User_Ticket')
     
     def form_valid(self, form):
-        print(form.cleaned_data)
         return super(Update_Ticketing, self).form_valid(form)
 
 class Update_Comments(UpdateView):
@@ -73,7 +70,6 @@ class Update_Comments(UpdateView):
     success_url = reverse_lazy('Ticketing:User_Ticket')
 
     def form_valid(self, form):
-        print(form.cleaned_data)
         return super(Update_Comments, self).form_valid(form)
 
 class Detail_Ticket(DetailView):

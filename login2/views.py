@@ -777,7 +777,7 @@ class Create_Qualifications(CreateView):
         id=self.kwargs.get('pk')
         user_profile = Profile.objects.get(id=id)
         form.instance.employee = user_profile
-        print(form.cleaned_data)
+        #print(form.cleaned_data)
         return super(Create_Qualifications, self).form_valid(form)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -797,7 +797,7 @@ class Create_Qualifications_HR(CreateView):
         id=self.kwargs.get('pk')
         user_profile = Profile.objects.get(id=id)
         form.instance.employee = user_profile
-        print(form.cleaned_data)
+        #print(form.cleaned_data)
         return super(Create_Qualifications_HR, self).form_valid(form)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')

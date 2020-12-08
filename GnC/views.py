@@ -176,7 +176,6 @@ class Create_Goals(BSModalCreateView): #class Create_Goals(CreateView):
         form.instance.employee = self.request.user.profile
         form.instance.status = 'Employee'
 
-        print(form.cleaned_data)
         return super(Create_Goals, self).form_valid(form)
 
 
@@ -195,7 +194,6 @@ class Create_Competencies(CreateView):
         form.instance.appraisal = user_appraisal_list
         form.instance.employee = self.request.user.profile
 
-        print(form.cleaned_data)
         return super(Create_Competencies, self).form_valid(form)
 
 #Form done
@@ -210,7 +208,6 @@ class Create_KPI(CreateView):
         id = self.kwargs.get("pk")
         form.instance.goal = Goals.objects.get(id=id)
         form.instance.progress = 'Not Started'
-        print(form.cleaned_data)
         return super(Create_KPI, self).form_valid(form)
 
 #Form done
@@ -227,7 +224,6 @@ class Create_Departmental_Goals(CreateView):
         #To automatically pass user profile into 'manager' field
         form.instance.manager = self.request.user.profile
         form.instance.department = self.request.user.profile.department
-        print(form.cleaned_data)
         return super(Create_Departmental_Goals, self).form_valid(form)
 
 #Form done
@@ -242,7 +238,6 @@ class Create_Departmental_Competencies(CreateView):
         form.instance.appraisal = Overall_Appraisal.objects.get(id=id)
         form.instance.manager = self.request.user.profile
         form.instance.department = self.request.user.profile.department
-        print(form.cleaned_data)
         return super(Create_Departmental_Competencies, self).form_valid(form)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -256,7 +251,6 @@ class Create_Goals_Comments(CreateView):
         form.instance.created_by_id = self.request.user.profile
         id=self.kwargs.get("pk")
         form.instance.goal = Goals.objects.get(id=id)
-        print(form.cleaned_data)
         return super(Create_Goals_Comments, self).form_valid(form)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -270,7 +264,6 @@ class Create_Competencies_Comments(CreateView):
         form.instance.created_by_id = self.request.user.profile
         id = self.kwargs.get("pk")
         form.instance.competency = Competencies.objects.get(id = id)
-        print(form.cleaned_data)
         super(Create_Competencies_Comments, self).form_valid(form)
 
 #DetailView
@@ -402,7 +395,6 @@ class Update_Goals_User(UpdateView):
 
     def form_valid(self, form):
         form.instance.status = 'Manager'
-        print(form.cleaned_data)
         return super(Update_Goals_User, self).form_valid(form)
 
 #Form done
@@ -415,7 +407,6 @@ class Update_Departmental_Goals(UpdateView):
     success_url = reverse_lazy('user_homepage')
 
     def form_valid(self, form):
-        print(form.cleaned_data)
         return super(Update_Departmental_Goals, self).form_valid(form)
 
 #Form done
@@ -427,7 +418,6 @@ class Update_Departmental_Competencies(UpdateView):
     success_url = reverse_lazy('user_homepage')
 
     def form_valid(self, form):
-        print(form.cleaned_data)
         return super(Update_Departmental_Competencies, self).form_valid(form)
 
 #Form done
@@ -441,7 +431,6 @@ class Update_Competencies_User(UpdateView):
 
     def form_valid(self, form):
         form.instance.status = 'Manager'
-        print(form.cleaned_data)
         return super(Update_Competencies_User, self).form_valid(form)
 
 #Form done
@@ -454,7 +443,6 @@ class Update_KPI(UpdateView):
     success_url = reverse_lazy('user_homepage')
 
     def form_valid(self, form):
-        print(form.cleaned_data)
         return super(Update_KPI, self).form_valid(form)
 
 #Form done
@@ -466,7 +454,6 @@ class Update_KPI_POST(UpdateView):
     success_url = reverse_lazy('user_homepage')
 
     def form_valid(self, form):
-        print(form.cleaned_data)
         return super(Update_KPI_POST, self).form_valid(form)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -478,7 +465,6 @@ class Update_KPI_POST1(UpdateView):
 
     def form_valid(self, form):
         form.instance.progress = 'Completed'
-        print(form.cleaned_data)
         return super(Update_KPI_POST1, self).form_valid(form)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -490,7 +476,6 @@ class Update_KPI_POST2(UpdateView):
 
     def form_valid(self, form):
         form.instance.progress = 'Working'
-        print(form.cleaned_data)
         return super(Update_KPI_POST2, self).form_valid(form)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -501,7 +486,6 @@ class Update_Departments(UpdateView):
     success_url = reverse_lazy('user_homepage')
 
     def form_valid(self, form):
-        print(form.cleaned_data)
         return super(Update_Departments, self).form_valid(form)
 
 @login_required(login_url='login')
@@ -599,7 +583,6 @@ class Create_Comment(CreateView):
         form.instance.goal = Goals.objects.get(id=id)
         form.instance.created_by = self.request.user.profile
         # form.instance.progress = 'Not Started'
-        print(form.cleaned_data)
         return super(Create_Comment, self).form_valid(form)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -610,10 +593,8 @@ class Update_Comment(UpdateView):
     success_url = reverse_lazy('user_homepage')
 
     def form_valid(self, form):
-        print(self.object)
         if self.object.created_by == self.request.user.profile:
 
-            print(form.cleaned_data)
 
             return super(Update_Comment, self).form_valid(form)
         messages.warning(self.request, _("u can not edit this"))
@@ -630,12 +611,10 @@ class Mid_Yr_Create_Comment(CreateView):
     def form_valid(self, form):
         id = self.kwargs.get("pk")
         form.instance.goal = Goals.objects.get(id=id)
-        # print(self.request.user.id)
         form.instance.created_by = self.request.user.profile
         form.instance.user_id = self.request.user.id
         # form.instance.appraisal = User_Appraisal_List.objects.get(id=id)
         # form.instance.progress = 'Not Started'
-        print(form.cleaned_data)
         return super(Mid_Yr_Create_Comment, self).form_valid(form)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -646,10 +625,8 @@ class Mid_Yr_Update_Comment(UpdateView):
     success_url = reverse_lazy('user_homepage')
 
     def form_valid(self, form):
-        print(self.object)
         if self.object.created_by == self.request.user.profile:
 
-            print(form.cleaned_data)
 
             return super(Mid_Yr_Update_Comment, self).form_valid(form)
         messages.warning(self.request, _("u can not edit this"))

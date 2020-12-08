@@ -158,7 +158,6 @@ class Create_Appraisal_Category(CreateView):
     template_name = 'Appraisals/HuNet_CreateAppCat.html'
 
     def form_valid(self, form):
-        print(form.cleaned_data)
         return super(Create_Appraisal_Category, self).form_valid(form)
 
 #Done
@@ -169,7 +168,6 @@ class Create_Rating_Scale(CreateView):
     template_name = 'Appraisals/HuNet_CreateRatingScale.html'
 
     def form_valid(self, form):
-        print(form.cleaned_data)
         return super(Create_Rating_Scale, self).form_valid(form)
 
 #useless fx
@@ -190,7 +188,6 @@ class Create_User_Appraisal_List(CreateView):
         form.instance.appraisal_name = overall_appraisal.name
         form.instance.appraisal_category = overall_appraisal.appraisal_category
 
-        print(form.cleaned_data)
         return super(Create_User_Appraisal_List, self).form_valid(form)
 
 #------------UpdateView----------#
@@ -202,7 +199,6 @@ class Update_Appraisal_Category(UpdateView):
     template_name = 'Appraisals/HuNet_CreateAppCat.html'
 
     def form_valid(self, form):
-        print(form.cleaned_data)
         return super(Update_Appraisal_Category, self).form_valid(form)
 
 
@@ -215,7 +211,6 @@ class Update_Rating_Scale(UpdateView):
     template_name = 'Appraisals/HuNet_CreateRatingScale.html'
 
     def form_valid(self, form):
-        print(form.cleaned_data)
         return super(Update_Rating_Scale, self).form_valid(form)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -226,7 +221,6 @@ class Update_User_Appraisal_List(UpdateView):
     template_name = 'Appraisals/HuNet_UpdateUAL.html'
 
     def form_valid(self, form):
-        print(form.cleaned_data)
         return super(Update_User_Appraisal_List, self).form_valid(form)
 #class Update_peerAppraisal(UpdateView):
 #    model = Appraisal
@@ -377,7 +371,6 @@ class EtM_User_Appraisal_List(UpdateView):
 
     def form_valid(self, form):
         form.instance.status = 'Manager'
-        print(form.cleaned_data)
         return super(EtM_User_Appraisal_List, self).form_valid(form)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -389,7 +382,6 @@ class MtE_User_Appraisal_List(UpdateView):
 
     def form_valid(self, form):
         form.instance.status = 'Employee'
-        print(form.cleaned_data)
         return super(MtE_User_Appraisal_List, self).form_valid(form)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -401,7 +393,6 @@ class MtS1BE_User_Appraisal_List(UpdateView):
 
     def form_valid(self, form):
         form.instance.status = 'S1BEmployee'
-        print(form.cleaned_data)
         return super(MtS1BE_User_Appraisal_List, self).form_valid(form)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -413,7 +404,6 @@ class S1BEtS1BM_User_Appraisal_List(UpdateView):
 
     def form_valid(self, form):
         form.instance.status = 'S1BManager'
-        print(form.cleaned_data)
         return super(S1BEtS1BM_User_Appraisal_List, self).form_valid(form)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -425,7 +415,6 @@ class S1BMtS1BR_User_Appraisal_List(UpdateView):
 
     def form_valid(self, form):
         form.instance.status = 'S1BReview'
-        print(form.cleaned_data)
         return super(S1BMtS1BR_User_Appraisal_List, self).form_valid(form)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -437,7 +426,6 @@ class S1BRtS1BM_User_Appraisal_List(UpdateView):
 
     def form_valid(self, form):
         form.instance.status = 'S1BManager'
-        print(form.cleaned_data)
         return super(S1BRtS1BM_User_Appraisal_List, self).form_valid(form)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -449,7 +437,6 @@ class S1BMtS2E_User_Appraisal_List(UpdateView):
 
     def form_valid(self, form):
         form.instance.status = 'S2Employee'
-        print(form.cleaned_data)
         return super(S1BMtS2E_User_Appraisal_List, self).form_valid(form)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -461,7 +448,6 @@ class S2EtS2M_User_Appraisal_List(UpdateView):
 
     def form_valid(self, form):
         form.instance.status = 'S2Manager'
-        print(form.cleaned_data)
         return super(S2EtS2M_User_Appraisal_List, self).form_valid(form)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -473,7 +459,6 @@ class S2MtApp_User_Appraisal_List(UpdateView):
 
     def form_valid(self, form):
         form.instance.status = 'Approved'
-        print(form.cleaned_data)
         return super(S2MtApp_User_Appraisal_List, self).form_valid(form)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -490,7 +475,6 @@ class ApptS2M_User_Appraisal_List(UpdateView):
     def form_valid(self, form):
         form.instance.status = 'S2Manager'
         form.instance.completion = 'Review'
-        print(form.cleaned_data)
         return super(ApptS2M_User_Appraisal_List, self).form_valid(form)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -503,7 +487,6 @@ class S2MtAppR_User_Appraisal_List(UpdateView):
     def form_valid(self, form):
         form.instance.status = 'Approved'
         form.instance.completion = 'ReviewCompleted'
-        print(form.cleaned_data)
         return super(S2MtAppR_User_Appraisal_List, self).form_valid(form)
 
 @login_required(login_url='login')
@@ -803,7 +786,6 @@ class Update_Appraisal2(UpdateView):
 
     def form_valid(self, form):
         form.instance.completion = 'ECompleted'
-        print(form.cleaned_data)
         return super(Update_Appraisal2, self).form_valid(form)
 
 @login_required(login_url='login')
@@ -1449,7 +1431,6 @@ class Update_Appraisal2_B(UpdateView):
 
     def form_valid(self, form):
         form.instance.completion = 'BCompleted'
-        print(form.cleaned_data)
         return super(Update_Appraisal2_B, self).form_valid(form)
 
 #Real one
@@ -1630,14 +1611,14 @@ def Create_Peer_Appraisal(request, *args, **kwargs):
             list_of_ids = request.POST.getlist('profile_list')
             user_profile = Profile.objects.get(id=list_of_ids[0])
         except IndexError:
-            print("Index not in range")
+            pass
 
 
         try:
             list_of_ids2 = request.POST.getlist('profile_list2')
             user_profile2 = Profile.objects.get(id=list_of_ids2[0])
         except IndexError:
-            print("Index not in range")
+            pass
 
 
         if len(list_of_ids) >= 1:
@@ -1879,7 +1860,6 @@ class update_MID_Overall_Appraisal(UpdateView):
 
     def form_valid(self, form):
         form.instance.mid_year_stage = 'Completed'
-        print(form.cleaned_data)
         return super(update_MID_Overall_Appraisal, self).form_valid(form)
 
 @login_required(login_url='login')
