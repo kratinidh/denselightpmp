@@ -633,6 +633,10 @@ def Update_Profile(request, *args, **kwargs):
     form = UpdateProfileForm_All(request.POST or None, instance=profile_user)
     if request.method == 'POST':
         if form.is_valid():
+            file=profile_Picture=request.FILES.get('profile_Picture')
+            if file is not None:
+               profile_user.profile_Picture=file
+               profile_user.save()
             form.save()
             try:
                 email_string = PROFILE_UPDATE_EMAIL(profile_user)

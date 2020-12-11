@@ -1297,24 +1297,24 @@ class UpdateManagerAppRatingForm(forms.ModelForm):
     class Meta:
         model = User_Appraisal_List
         fields = (
-            'incrementRecommendation',
-            'bonusRecommendation'
+            # 'incrementRecommendation',
+            # 'bonusRecommendation'
         )     
         labels ={
-            'incrementRecommendation': 'Increment Recommendation (%)',
-            'bonusRecommendation': 'Bonus Recommendation (Fixed)'
+            # 'incrementRecommendation': 'Increment Recommendation (%)',
+            # 'bonusRecommendation': 'Bonus Recommendation (Fixed)'
         }
         widgets={
-            'incrementRecommendation': forms.NumberInput(attrs={
-                    'class': 'form-control',
-                    'placeholder': 'Enter Increment Disembursement',
-                    'style': 'width:40%'    
+            # 'incrementRecommendation': forms.NumberInput(attrs={
+            #         'class': 'form-control',
+            #         'placeholder': 'Enter Increment Disembursement',
+            #         'style': 'width:40%'    
                     
-                }),
-            'bonusRecommendation': forms.Textarea(
-                attrs={'class': 'form-control col-8',
-                        'style': 'font-size: 16px; height: 120px; resize: none; width:40%;'
-                }),
+            #     }),
+            # 'bonusRecommendation': forms.Textarea(
+            #     attrs={'class': 'form-control col-8',
+            #             'style': 'font-size: 16px; height: 120px; resize: none; width:40%;'
+            #     }),
         }
 
 class UpdateBoardAppRatingForm(forms.ModelForm): 

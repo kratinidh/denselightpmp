@@ -40,16 +40,16 @@
                         <div id="line"></div>
                         <div class = "row button-row"  style = "margin: 0">
                             <a href="{% url 'Appraisals:Update_AppraisalG' user_app.id %}"><button type = "button" class = "btn">1</button></a>
-                            <a href="{% url 'Appraisals:Update_AppraisalC' user_app.id %}"><button type = "button" class = "btn">2</button></a>
+                            {% comment %} <a href="{% url 'Appraisals:Update_AppraisalC' user_app.id %}"><button type = "button" class = "btn">2</button></a>
                             <a href="{% url 'Appraisals:Update_AppraisalS' user_app.id %}"><button type = "button" class = "btn">3</button></a>
-                            <a href="{% url 'Appraisals:Update_AppraisalCareer' user_app.id %}"><button type = "button" class = "btn">4</button></a>
-                            <a href="{% url 'Appraisals:Update_Appraisal' user_app.id %}"><button type = "button" class = "btn activebtn">5</button></a>
+                            <a href="{% url 'Appraisals:Update_AppraisalCareer' user_app.id %}"><button type = "button" class = "btn">4</button></a> {% endcomment %}
+                            <a href="{% url 'Appraisals:Update_Appraisal' user_app.id %}"><button type = "button" class = "btn activebtn">2</button></a>
                         </div> 
                         <div class = "row button-name-row justify-content-between m-0">
                             <span>Goals Rating</span>
-                            <span>Core Values Competencies Rating</span>
+                            {% comment %} <span>Core Values Competencies Rating</span>
                             <span>Skills Rating</span>
-                            <span>Career Discussion</span>
+                            <span>Career Discussion</span> {% endcomment %}
                             <span>Summary</span>
                         </div>
                         {%endblock%}
@@ -86,7 +86,7 @@
                         </div>
 
                         <br>
-
+                       
                         {% block table %}
                         {% if user_app.goals_set.count > 0 %}
                         <table class = "table table-bordered text-center fixed">
@@ -103,9 +103,6 @@
                                     <td>{{goal.user_comments}}</td>
                                 </tr>
                                 {%endfor%}
-                                <tr>
-                                    <td colspan="3" rowspan="3">Average Score: {{goals_score}}<p>{{goals_weightage}}</p></td>
-                                </tr>
                             </tbody>
                         </table>
                         {%endif%}
@@ -132,7 +129,87 @@
                             </tbody>
                         </table>
                         {%endif%}
-                        
+                        {% comment %} <div class="card">
+                            <br>
+                            <div class="card-header">
+                                <h5> Career Discussion </h5>
+                            </div>
+
+                            <div class="card-body">
+
+                                <div class="card-header">
+
+                                    <b>
+                                        Summarise the employee's achievement against objectives
+                                    </b>
+
+                                </div>
+
+                                <div>
+                                    <div class="card-body">
+                                        {{career_discussion.Q1}}
+                                    </div>
+                                </div>
+
+
+                                <div class="card-header">
+
+                                    <b>
+                                        Summary on Strengths
+                                    </b>
+
+                                </div>
+                                <div>
+                                    <div class="card-body">
+                                        {{career_discussion.Q2}}
+                                    </div>
+                                </div>
+
+
+                                <div class="card-header" id="headingThree">
+
+                                    <b>
+                                        Developmental Plan /Needs (Action and Timing)
+                                    </b>
+                                    </h2>
+                                </div>
+                                <div>
+                                    <div class="card-body">
+                                        {{career_discussion.Q3}}
+                                    </div>
+                                </div>
+
+
+                                <div class="card-header">
+
+                                    <b>
+                                        Short Term: 0-2 years
+                                    </b>
+
+                                </div>
+                                <div>
+                                    <div class="card-body">
+                                        {{career_discussion.Q4}}
+                                    </div>
+                                </div>
+                                <div class="card-header">
+
+                                    <b>
+                                        Longer Term: 3-5 years
+                                    </b>
+
+                                </div>
+                                <div>
+                                    <div class="card-body">
+                                        {{career_discussion.Q5}}
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div> {% endcomment %}
+
                         <br>
                         {% if user_app.skills_set.count > 0 %}
                         <table class = "table table-bordered text-center fixed pb-0 mb-0">

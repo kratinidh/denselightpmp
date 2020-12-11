@@ -31,7 +31,7 @@ urlpatterns = [
     path('allusers/<int:pk>/S2MtApp', views.S2MtApp_User_Appraisal_List.as_view(), name='S2MtApp_Appraisal'),
     path('allusers/<int:pk>/ApptS2M', views.ApptS2M_User_Appraisal_List.as_view(), name='ApptS2M_Appraisal'),
     path('allusers/<int:pk>/S2MtAppR', views.S2MtAppR_User_Appraisal_List.as_view(), name='S2MtAppR_Appraisal'),
-   # path('allusers/<int:pk>/<int:mk>/Update1', views.updateAppraisal2.as_view(), name="Update_Appraisal1")
+    # path('allusers/<int:pk>/<int:mk>/Update1', views.updateAppraisal2.as_view(), name="Update_Appraisal1")
     path('allusers/<int:pk>/UpdateMidYear/UpdateG/', views.UpdateMidAppraisalG, name="Update_MIDAppraisalG"),
     path('allM/<int:pk>/UpdateMidYear/UpdateG/', views.UpdateMidAppraisalG_M, name="Update_MIDAppraisalG_M"),
 

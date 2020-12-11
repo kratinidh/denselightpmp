@@ -27,6 +27,7 @@ urlpatterns = [
     path('Ticketing/', include('Ticketing.urls')),
     path('GnC/', include('GnC.urls')),
     path('Appraisals/', include('Appraisals.urls')), 
+    path('profile/',include('Profile.urls')),
     path('', include('django.contrib.auth.urls'))
 ]
 

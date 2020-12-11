@@ -17,6 +17,9 @@ class CreateUserForm(UserCreationForm):
 class CreateProfileForm(forms.ModelForm):
     phone = PhoneNumberField(widget=forms.TextInput(attrs={
         'class': 'form-control', }))
+    profile_Picture= forms.ImageField(widget=forms.FileInput(attrs={
+       'class': 'form-control'
+    }))
                 
     class Meta:
         model = Profile
@@ -24,7 +27,7 @@ class CreateProfileForm(forms.ModelForm):
             'name',
             'employee_ID',
             'nric',
-
+            'profile_Picture',
             'typeOfEmployee',
             'email',
             'department',
@@ -64,7 +67,8 @@ class CreateProfileForm(forms.ModelForm):
             'phone' : 'Phone (Add Country Code)',
             'skill1': 'Skill 1',
             'skill2': 'Skill 2',
-            'skill3': 'Skill 3'
+            'skill3': 'Skill 3',
+            'profile_Picture':'Profile Picture',
         }
         widgets = {
             'name': forms.TextInput(
@@ -178,6 +182,10 @@ class CreateProfileForm(forms.ModelForm):
 class UpdateProfileForm_All(forms.ModelForm):
     phone = PhoneNumberField(widget=forms.TextInput(attrs={
         'class': 'form-control', }))
+    profile_Picture= forms.ImageField(widget=forms.FileInput(attrs={
+       'class': 'form-control'
+    }),required=False)
+ 
                 
     class Meta:
         model = Profile
@@ -187,7 +195,7 @@ class UpdateProfileForm_All(forms.ModelForm):
             'second_Reporting_Manager',
             'division_Centre',
             'phone',
-
+            'profile_Picture',
             'skill1',
             'skill2',
             'skill3'
@@ -198,6 +206,7 @@ class UpdateProfileForm_All(forms.ModelForm):
             'second_Reporting_Manager' : 'HOD',
             'division_Centre' : 'Section',
             'phone' : 'Phone (Add Country Code)',
+            'profile_Picture':'Profile Picture',
             'skill1': 'Skill 1',
             'skill2': 'Skill 2',
             'skill3': 'Skill 3'

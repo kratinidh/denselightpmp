@@ -93,9 +93,9 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'denselight1',
-        'USER': 'benny6789',
-        'PASSWORD': 'benny567',
+        'NAME': 'n3',
+        'USER': 'postgres',
+        'PASSWORD': 'DjangoPostgresql',
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -138,14 +138,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-#AWS_ACCESS_KEY_ID = 'CET4KSE4COFQBPDKNHFB'
-#AWS_SECRET_ACCESS_KEY = 'gbP/xg6vZgFPtrw4SfzIirUwIlqWJYbRSLkRqaUYciw'
-#AWS_STORAGE_BUCKET_NAME = 'hunetdenselight'
-#AWS_S3_ENDPOINT_URL = 'https://sgp1.digitaloceanspaces.com'
-#AWS_S3_OBJECT_PARAMETERS = {
+# AWS_ACCESS_KEY_ID = 'CET4KSE4COFQBPDKNHFB'
+# AWS_SECRET_ACCESS_KEY = 'gbP/xg6vZgFPtrw4SfzIirUwIlqWJYbRSLkRqaUYciw'
+# AWS_STORAGE_BUCKET_NAME = 'hunetdenselight'
+# AWS_S3_ENDPOINT_URL = 'https://sgp1.digitaloceanspaces.com'
+# AWS_S3_OBJECT_PARAMETERS = {
 #    'CacheControl': 'max-age=86400',
-#}
-#AWS_LOCATION = 'hunetdenselight-static'
+# }
+# AWS_LOCATION = 'hunetdenselight-static'
 
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
@@ -162,7 +162,7 @@ STATICFILES_DIRS = [
 STATIC_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL, AWS_LOCATION)
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
+# STATIC_URL='/static/'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

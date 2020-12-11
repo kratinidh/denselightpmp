@@ -37,16 +37,16 @@
                 <div id="line"></div>
                 <div class = "row button-row"  style = "margin: 0">
                     <a href="{% url 'Appraisals:Update_AppraisalG' employee_appraisal.id %}"><button type = "button" class = "btn">1</button></a>
-                    <a href="{% url 'Appraisals:Update_AppraisalC' employee_appraisal.id %}"><button type = "button" class = "btn activebtn">2</button></a>
+                    {% comment %} <a href="{% url 'Appraisals:Update_AppraisalC' employee_appraisal.id %}"><button type = "button" class = "btn activebtn">2</button></a>
                     <a href="{% url 'Appraisals:Update_AppraisalS' employee_appraisal.id %}"><button type = "button" class = "btn">3</button></a>
-                    <a href="{% url 'Appraisals:Update_AppraisalCareer' employee_appraisal.id %}"><button type = "button" class = "btn">4</button></a>
-                    <a href="{% url 'Appraisals:Update_Appraisal' employee_appraisal.id %}"><button type = "button" class = "btn">5</button></a>
+                    <a href="{% url 'Appraisals:Update_AppraisalCareer' employee_appraisal.id %}"><button type = "button" class = "btn">4</button></a> {% endcomment %}
+                    <a href="{% url 'Appraisals:Update_Appraisal' employee_appraisal.id %}"><button type = "button" class = "btn">4</button></a>
                 </div>
                 <div class = "row button-name-row justify-content-between m-0">
                     <span>Goals Rating</span>
-                    <span>Core Values Competencies Rating</span>
+                    {% comment %} <span>Core Values Competencies Rating</span>
                     <span>Skills Rating</span>
-                    <span>Career Discussion</span>
+                    <span>Career Discussion</span> {% endcomment %}
                     <span>Summary</span>
                 </div>
                 {%endblock%}

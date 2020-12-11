@@ -579,7 +579,7 @@ def UpdateAppraisalG(request, *args, **kwargs):
             goals = formset.save(commit=False)
             for goal in goals:
                 goal.save()
-            return redirect('../')
+            return HttpResponseRedirect(reverse('Appraisals:Update_Appraisal', args=(id,)))
 
     elif request.method == 'POST' and 'calculate' in request.POST:
         formset = GoalsFormset(request.POST or None, queryset = queryset1)
@@ -749,7 +749,8 @@ def Update_Appraisal(request, *args, **kwargs):
         'goals_weightage': avg1_grade,
         'competencies_weightage': avg2_grade,
         'skills_weightage': avg3_grade,
-        'total_weightage': totalavg_grade
+        'total_weightage': totalavg_grade,
+        'career_discussion':selfappraisal.career_discussion_set.order_by('-id').first(),
     }
     return render(request, 'Appraisals/HuNet_UpdateUAL.html', context)
 
@@ -762,7 +763,7 @@ def createCareerDiscussion(request, *args, **kwargs):
     final_score = FINAL_GRADE(user_appraisal_list, overall_appraisal)
     final_grade = GRADING_SYSTEM(final_score)
 
-    form = CreateCareerDiscussionForm2(request.POST or None)
+    form = CreateCareerDiscussionForm2(request.POST or None,instance=user_appraisal_list.career_discussion_set.order_by('-id').first())
     if form.is_valid():
         careerdiscussion = form.save(commit=False)
         careerdiscussion.employee = request.user.profile
@@ -873,7 +874,8 @@ def UpdateAppraisalG_M(request, *args, **kwargs):
             goals = formset.save(commit=False)
             for goal in goals:
                 goal.save()
-            return redirect('../')
+            return HttpResponseRedirect(reverse('Appraisals:Update_Appraisal_M', args=(id,)))
+
 
     elif request.method == 'POST' and 'calculate' in request.POST:
         formset = GoalsFormset(request.POST or None, queryset = queryset1)

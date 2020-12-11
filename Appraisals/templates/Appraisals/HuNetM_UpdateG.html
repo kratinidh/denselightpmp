@@ -4,35 +4,25 @@
 
 {%block bubbleurl%}
     <div id="line"></div>
-    <div class = "row button-row"  style = "margin: 0">
-    <a href="{% url 'Appraisals:Update_AppraisalG_M' employee_appraisal.id %}"><button type = "button" class = "btn activebtn">1</button></a>
-    <a href="{% url 'Appraisals:Update_AppraisalC_M' employee_appraisal.id %}"><button type = "button" class = "btn">2</button></a>
+    <div   class = "row button-row"  style = "margin: 10">
+    <a  class="mx-auto" href="{% url 'Appraisals:Update_AppraisalG_M' employee_appraisal.id %}"><button type = "button" class = "btn activebtn">1</button></a>
+    {% comment %} <a href="{% url 'Appraisals:Update_AppraisalC_M' employee_appraisal.id %}"><button type = "button" class = "btn">2</button></a>
     <a href="{% url 'Appraisals:Update_AppraisalS_M' employee_appraisal.id %}"><button type = "button" class = "btn">3</button></a>
-    <a href="{% url 'Appraisals:Update_AppraisalCareer_M' employee_appraisal.id %}"><button type = "button" class = "btn">4</button></a>
-    <a href="{% url 'Appraisals:Update_Appraisal_M' employee_appraisal.id %}"><button type = "button" class = "btn">5</button></a>
+    <a href="{% url 'Appraisals:Update_AppraisalCareer_M' employee_appraisal.id %}"><button type = "button" class = "btn">4</button></a> {% endcomment %}
+    <a  class="mx-auto" href="{% url 'Appraisals:Update_Appraisal_M' employee_appraisal.id %}"><button type = "button" class = "btn">2</button></a>
     </div> 
     <div class = "row button-name-row justify-content-between m-0">
-        <span>Goals Rating</span>
-        <span>Core Values Competencies Rating</span>
+        <span class="mx-auto">Goals Rating</span>
+        {% comment %} <span>Core Values Competencies Rating</span>
         <span>Skills Rating</span>
-        <span>Career Discussion</span>
-        <span>Summary</span>
+        <span>Career Discussion</span> {% endcomment %}
+        <span class="mx-auto">Summary</span>
     </div>
 {%endblock%}
 
 {%block rejectioncomments%}
 <br>
 
-<div class = "alert alert-warning">
-    <h6 class = "alert-heading">
-        HR Comments: 
-    </h6>   
-    <hr>
-    {%if employee_appraisal.appraisalHR_rejection == 'NIL' %}
-    {%else%}
-
-    {{employee_appraisal.appraisalHR_rejection}}
-    {%endif%}
-</div>
+ 
 {%endblock%}
 

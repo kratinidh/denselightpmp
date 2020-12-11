@@ -1,6 +1,6 @@
 import csv, io
 from random import randint
-from .forms import CreateUserForm, CreateProfileForm, CreateQualificationsForm, UpdateProfileForm_All
+# from .forms import CreateUserForm, CreateProfileForm, CreateQualificationsForm, UpdateProfileForm_All
 from Profile.models import Profile, Departments, Qualifications
 from Appraisals.models import User_Appraisal_List, peerAppraisal, Overall_Appraisal
 # Create your views here.
@@ -26,6 +26,8 @@ from login2.decorators import unauthenticated_user, allowed_users, admin_only
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.edit import CreateView,  UpdateView
 from django.views.generic import DetailView, DeleteView
+from Appraisals.views import GRADING_SYSTEM
+from login2.forms import  CreateUserForm, CreateProfileForm, CreateQualificationsForm, UpdateProfileForm_All
 
 def PROFILE_CREATION_EMAIL(name, username, email, typeOfEmployee): 
     email_string = "Dear " + name + ", \n\nYour Performance Management System account has been created. Please see the login details below to access the system: \n\nUsername:" + username + "\nEmail: " + email + "\nPassword: DenselightPassword1234" + "\nAccess: " + typeOfEmployee + "\n\nPlease do not hesitate to contact the HR Department if you have any questions. \nThank you." 
@@ -934,3 +936,71 @@ def Profile_Upload(request):
     context = {}
     return render(request, "login2/Profile_Upload.html", context)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+def show_report(request,*args, **kwargs):
+    id = kwargs.get('id')
+    selfappraisal = User_Appraisal_List.objects.get(id=id)
+    overallappraisal = selfappraisal.overall_appraisal
+
+    #Goals
+    sum = 0
+    weightage_count=0
+    totalsum = 0
+    for goal in selfappraisal.goals_set.all():
+        weightage_count+=goal.weightage
+    for goal in selfappraisal.goals_set.all():
+        sum+=goal.user_rating * goal.weightage / weightage_count
+    totalsum += sum * overallappraisal.goal_weightage / (overallappraisal.goal_weightage + overallappraisal.competency_weightage + overallappraisal.skill_weightage)
+    avg1 = round(sum,1)
+
+    sum = 0
+    weightage_count = 0
+    for competency in selfappraisal.competencies_set.all():
+        weightage_count+=competency.weightage
+    for competency in selfappraisal.competencies_set.all():
+        sum+=competency.user_rating * competency.weightage / weightage_count
+    totalsum += sum * overallappraisal.competency_weightage / (overallappraisal.goal_weightage + overallappraisal.competency_weightage + overallappraisal.skill_weightage)
+    avg2 = round(sum,1)
+
+    sum = 0
+    weightage_count = 0
+    for skill in selfappraisal.skills_set.all():
+        weightage_count+=skill.weightage
+    for skill in selfappraisal.skills_set.all():
+        sum+=skill.user_rating * skill.weightage / weightage_count
+    totalsum += sum * overallappraisal.skill_weightage / (overallappraisal.goal_weightage + overallappraisal.competency_weightage + overallappraisal.skill_weightage)
+    avg3 = round(sum,1)
+
+    totalavg = round(totalsum,1)
+
+    avg1_grade = GRADING_SYSTEM(avg1)
+    avg2_grade = GRADING_SYSTEM(avg2)
+    avg3_grade = GRADING_SYSTEM(avg3)
+    totalavg_grade = GRADING_SYSTEM(totalavg)
+ 
+
+    context={
+        'user_app': selfappraisal,
+        'goals_score': avg1,
+        'competencies_score': avg2,
+        'skills_score': avg3,
+        'total_score': totalavg,
+        'goals_weightage': avg1_grade,
+        'competencies_weightage': avg2_grade,
+        'skills_weightage': avg3_grade,
+        'total_weightage': totalavg_grade
+    }
+    return render(request, 'Profile/report.html', context)
+    

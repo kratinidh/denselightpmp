@@ -55,7 +55,7 @@ class Profile(models.Model):
 
     user = models.OneToOneField(User, null = True, on_delete=models.CASCADE)
 
-    profile_Picture = models.ImageField(blank = True, null = True)
+    profile_Picture =  models.ImageField(upload_to='profile', blank=True, null=True)
     name = models.CharField(max_length = 200, blank = False, null = False)
 
     employee_ID = models.CharField(max_length=15, blank = False, null = False, default = 'S123456D')
