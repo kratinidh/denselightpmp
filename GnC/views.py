@@ -19,6 +19,7 @@ from django.contrib import messages
 from django.utils.translation import gettext as _
 
 from bootstrap_modal_forms.generic import BSModalCreateView
+from django.core.mail import send_mail
 
 class ExtraContextMixin(object):
     def get_context_data(self, **kwargs):
@@ -509,6 +510,7 @@ def createGoals(request, *args, **kwargs):
             if(goal.weightage + sum > 100):
                 messages.warning(request, 'Total Goal weightage exceeded 100%')
                 return HttpResponseRedirect(reverse('GnC:Create_User_Goals', args=(id,)))
+            send_mail('goal is created', f"hi  the goal is created",'denselight_epmp@consulthunet.com')
             goal.save()
             return HttpResponseRedirect(reverse('user_homepage'))
 
