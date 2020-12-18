@@ -510,7 +510,7 @@ def createGoals(request, *args, **kwargs):
             if(goal.weightage + sum > 100):
                 messages.warning(request, 'Total Goal weightage exceeded 100%')
                 return HttpResponseRedirect(reverse('GnC:Create_User_Goals', args=(id,)))
-            send_mail('goal is created', f"hi  the goal is created",'denselight_epmp@consulthunet.com')
+            send_mail('goal is created', f"hi denselight employee the goal {goal.summary} is created",'denselight_epmp@consulthunet.com', recipient_list=[user_appraisal_list.employee.email,user_appraisal_list.manager.email])
             goal.save()
             return HttpResponseRedirect(reverse('user_homepage'))
 

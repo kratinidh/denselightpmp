@@ -371,6 +371,16 @@ class EtM_User_Appraisal_List(UpdateView):
 
     def form_valid(self, form):
         form.instance.status = 'Manager'
+        try:
+            user_app=form.instance
+            send_mail(
+                "Employee submit the goal to Supervisor/Manager",
+                f"Hi {user_app.manager.name} , \n Employee {user_app.employee.name} submitted goals of  {user_app.overall_appraisal.name} . \n  Please Click this link for approved the goal {self.request.META['HTTP_ORIGIN']}{reverse('Appraisals:Detail_User_Appraisal',args=(user_app.overall_appraisal.id ,user_app.id,))} ",
+                user_app.employee.email,
+                [user_app.manager.email],
+            )
+        except:
+            pass
         return super(EtM_User_Appraisal_List, self).form_valid(form)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -393,6 +403,16 @@ class MtS1BE_User_Appraisal_List(UpdateView):
 
     def form_valid(self, form):
         form.instance.status = 'S1BEmployee'
+        try:
+            user_app=form.instance
+            send_mail(
+                "Manager approved the goal",
+                f"Hi {user_app.employee.name} , \n Manager {user_app.manager.name} approved the goals of  {user_app.overall_appraisal.name} . \n Please Click this link for view the goal {self.request.META['HTTP_ORIGIN']}{reverse('Appraisals:Detail_User_Appraisal',args=(user_app.overall_appraisal.id ,user_app.id,))} ",
+                user_app.employee.email,
+                [user_app.manager.email],
+            )
+        except:
+            pass
         return super(MtS1BE_User_Appraisal_List, self).form_valid(form)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -404,6 +424,16 @@ class S1BEtS1BM_User_Appraisal_List(UpdateView):
 
     def form_valid(self, form):
         form.instance.status = 'S1BManager'
+        try:
+            user_app=form.instance
+            send_mail(
+                "Employee submit the mid year ratings and comments",
+                f"Hi {user_app.manager.name} , \n Manager {user_app.employee.name} submit the mid year ratings and comments the goals of  {user_app.overall_appraisal.name} . \n Please Click this link to approved the mid year ratings  {self.request.META['HTTP_ORIGIN']}{reverse('Appraisals:Detail_User_Appraisal',args=(user_app.overall_appraisal.id ,user_app.id,))} ",
+                user_app.employee.email,
+                [user_app.manager.email],
+            )
+        except:
+            pass
         return super(S1BEtS1BM_User_Appraisal_List, self).form_valid(form)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -437,6 +467,16 @@ class S1BMtS2E_User_Appraisal_List(UpdateView):
 
     def form_valid(self, form):
         form.instance.status = 'S2Employee'
+        try:
+            user_app=form.instance
+            send_mail(
+                "Manager approved the mid year ratings and comments",
+                f"Hi {user_app.employee.name} , \n Manager {user_app.manager.name} approved the mid year ratings and comments of the goals of  {user_app.overall_appraisal.name} .  ",
+                user_app.employee.email,
+                [user_app.manager.email],
+            )
+        except:
+            pass
         return super(S1BMtS2E_User_Appraisal_List, self).form_valid(form)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -448,6 +488,16 @@ class S2EtS2M_User_Appraisal_List(UpdateView):
 
     def form_valid(self, form):
         form.instance.status = 'S2Manager'
+        try:
+            user_app=form.instance
+            send_mail(
+                "Employee End Year Ratings Approve",
+                f"Hi {user_app.manager.name} , \n Employee {user_app.employee.name} submitted end year ratings of {user_app.overall_appraisal.name} . \n Please Click this link for approved end year ratings {self.request.META['HTTP_ORIGIN']}{reverse('Appraisals:Update_AppraisalG_M',args=(user_app.id,))} ",
+                user_app.employee.email,
+                [user_app.manager.email],
+            )
+        except:
+            pass
         return super(S2EtS2M_User_Appraisal_List, self).form_valid(form)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -1129,6 +1179,15 @@ def Update_Appraisal_M(request, *args, **kwargs):
         user_app = form.save(commit=False)
         user_app.completion = 'MCompleted'
         user_app.save()
+        try:
+            send_mail(
+                "Manager Approve  End Year Ratings",
+                f"Hi {user_app.employee.first_reporting_manager} , \n  Employee {user_app.employee.name} submitted end year review of {user_app.overall_appraisal.name} . \n  Please Click this link for approved end year ratings {request.META['HTTP_ORIGIN']}{reverse('Appraisals:UpdateAppraisalG_M',args=(user_app.id,))} ",
+                user_app.employee.email,
+                [user_app.manager.email],
+            )
+        except:
+            pass
         return HttpResponseRedirect(reverse('user_homepage'))
 
     context={
